@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { stringify } = require("querystring");
+const {stringify} = require("querystring");
 
 const catalogSchema = mongoose.Schema(
     {
@@ -7,13 +7,15 @@ const catalogSchema = mongoose.Schema(
         itemType:String,
         category:String,
         type:String,
-        size:Schema.Types.Mixed,
+        size:mongoose.Schema.Types.Mixed,
         images:[String],
         price:Number,
-        description:Schema.Types.Mixed,
+        sale:Boolean,
+        salePrice:Number,
+        description:mongoose.Schema.Types.Mixed,
         inStock:Boolean,
         addDate:String
     }
 )
 
-module.exports = mongoose.model("Catalog", catalogSchema);
+module.exports = mongoose.model("catalog", catalogSchema, "Catalog");

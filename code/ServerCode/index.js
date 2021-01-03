@@ -9,4 +9,4 @@ app.use(cors());
 
 app.use("/catalog", catalogRouter);
 
-app.listen(3000, () => console.log('The Dress@Home App is working...'));
+app.listen(3000, () => console.log("The Dress@Home App is working..."));
