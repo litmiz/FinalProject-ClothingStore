@@ -5,7 +5,6 @@ const catalogModel = require("../models/catalog");
 
 router.get("/", (req, res) => {
     catalogModel.find({}, (error, data) => {
-        console.log("inside find");
         if (error) {
             console.error("There is an error with the get request.");
         }
@@ -57,7 +56,7 @@ router.delete('/', (req, res) => {
             console.error("There is an error with the delete request");
         }
         else {
-            res.send("The item had deleted");
+            res.send(`ID ${req.body._id} was deleted`);
         }
     })
 })
