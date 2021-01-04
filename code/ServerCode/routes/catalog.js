@@ -9,7 +9,6 @@ router.get("/", (req, res) => {
             console.error("There is an error with the get request.");
         }
         else {
-            console.log("not error");
             res.send(data);
         };
     })

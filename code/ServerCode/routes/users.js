@@ -9,7 +9,6 @@ router.get("/", (req, res) => {
             console.error("There is an error with the get request.");
         }
         else {
-            console.log("not error");
             res.send(data);
         };
     })
@@ -17,8 +16,8 @@ router.get("/", (req, res) => {
 
 router.post("/", (req, res) => {
     userModel.findOne({})
-        .exec(function(error, item) {
-            const newItem = new userModel({
+        .exec(function(error, user) {
+            const newOrder = new userModel({
                 fullName: req.body.fullName,
                 email: req.body.email,
                 password: req.body.password,
@@ -30,7 +29,7 @@ router.post("/", (req, res) => {
                 permissionLevel: req.body.permissionLevel,
                 currency: req.body.currency,
             })
-            newItem.save().then(() => console.log(`${req.body.fullName} saved in the Users DB`));
+            newOrder.save().then(() => console.log(`${req.body.fullName} saved in the Users DB`));
         })
 });
 
