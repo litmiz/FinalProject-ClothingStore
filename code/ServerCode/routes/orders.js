@@ -43,15 +43,15 @@ router.put('/', (req, res) => {
     });
 })
 
-router.delete('/', (req, res) => {
-    orderModel.findOneAndDelete({_id: req.body._id}, (error) => {
-        if (error) {
-            console.error("There is an error with the delete request");
-        }
-        else {
-            res.send(`ID ${req.body._id} order was deleted`);
-        }
-    })
-})
+// router.delete('/', (req, res) => {
+//     orderModel.findOneAndDelete({_id: req.body._id}, (error) => {
+//         if (error) {
+//             console.error("There is an error with the delete request");
+//         }
+//         else {
+//             res.send(`ID ${req.body._id} order was deleted`);
+//         }
+//     })
+// })
 
 module.exports = router;
