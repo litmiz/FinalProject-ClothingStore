@@ -10,7 +10,7 @@ const userSchema = mongoose.Schema(
         address:String,
         city:String,
         country:String,
-        favoriteItems:[Number],
+        favoriteItems:[mongoose.Schema.Types.ObjectId],
         permissionLevel:String,
         currency:String
     }

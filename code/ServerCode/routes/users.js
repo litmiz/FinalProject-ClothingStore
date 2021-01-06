@@ -14,23 +14,72 @@ router.get("/", (req, res) => {
     })
 });
 
-router.post("/", (req, res) => {
-    userModel.findOne({})
-        .exec(function(error, user) {
-            const newOrder = new userModel({
-                fullName: req.body.fullName,
-                email: req.body.email,
-                password: req.body.password,
-                phoneNumber: req.body.phoneNumber,
-                address: req.body.address,
-                city: req.body.city,
-                country: req.body.country,
-                favoriteItems: req.body.favoriteItems,
-                permissionLevel: req.body.permissionLevel,
-                currency: req.body.currency,
-            })
-            newOrder.save().then(() => console.log(`${req.body.fullName} saved in the Users DB`));
+// router.post("/", (req, res) => {
+//     userModel.findOne({})
+//         .exec(function(error, user) {
+//             const newUser = new userModel({
+//                 fullName: req.body.fullName,
+//                 email: req.body.email,
+//                 password: req.body.password,
+//                 phoneNumber: req.body.phoneNumber,
+//                 address: req.body.address,
+//                 city: req.body.city,
+//                 country: req.body.country,
+//                 favoriteItems: req.body.favoriteItems,
+//                 permissionLevel: req.body.permissionLevel,
+//                 currency: req.body.currency,
+//             })
+//             newUser.save().then(() => console.log(`${req.body.fullName} saved in the Users DB`));
+//         })
+// });
+
+router.post('/login', (req, res) => {
+    if (!req.body.email || !req.body.password) {
+        res.status(400).send('All fields are required!');
+        return;
+    }
+    userModel.findOne({email:req.body.email}, (error, user) => {
+        if (error) {
+            res.status(500).send("There is an error with the login");
+            return;
+        }
+        if (!user) {
+            res.status(400).send("Login failed! :(");
+            return;
+        } else {
+            if (user.password == req.body.password) {
+                res.status(200).send(req.body);
+            } else {
+                res.status(400).send("Login failed! :(");
+                return;
+            }
+        }
+    })
+});
+
+router.post('/register', (req, res) => {
+    let userData = req.body;
+    if (userData.email && userData.password) {
+        const newUser = new userModel({
+            fullName: req.body.fullName,
+            email: req.body.email,
+            password: req.body.password,
+            phoneNumber: req.body.phoneNumber,
+            address: req.body.address,
+            city: req.body.city,
+            country: req.body.country,
+            favoriteItems: req.body.favoriteItems,
+            permissionLevel: req.body.permissionLevel,
+            currency: req.body.currency,
         })
+        newUser.save((err, registeredUser) => {
+            if (err) {
+                console.log(err)
+            } else {
+                res.status(200).send("Login successed");
+            }
+        })
+    }
 });
 
 router.put('/', (req, res) => {
