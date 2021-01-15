@@ -2,17 +2,45 @@ require("../data/database");
 const express = require("express");
 const router = express.Router();
 const userModel = require("../models/users");
+const bcrypyt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const salt = 10;
+const verify = require('../modules/verifyToken');
 
-router.get("/", (req, res) => {
+router.get("/myPersonalInfo", (req, res) => {
+    userModel.findOne({email:req.query.email}, (error, data) => {
+        if (error) {
+            console.error("There is an error with the get request.");
+        }
+        else {
+            res.send({
+                fullName: data.fullName,
+                email: data.email,
+                phoneNumber: data.phoneNumber,
+                address: data.address,
+                city: data.city,
+                country: data.country,
+                favoriteItems: data.favoriteItems,
+            });
+        };
+    })
+});
+
+router.get("/usersPermissions", (req, res) => {
     userModel.find({}, (error, data) => {
         if (error) {
             console.error("There is an error with the get request.");
         }
         else {
-            res.send(data);
+            let users = [];
+            data.forEach(user => {
+                users.push({fullName: user.fullName, email: user.email, permissionLevel: user.permissionLevel,})
+            });
+            res.send({users});
         };
     })
 });
+
 
 // router.post("/", (req, res) => {
 //     userModel.findOne({})
@@ -44,15 +72,19 @@ router.post('/login', (req, res) => {
             return;
         }
         if (!user) {
-            res.status(400).send("Login failed! :(");
+            res.status(400).send("No such user");
             return;
         } else {
-            if (user.password == req.body.password) {
-                res.status(200).send(req.body);
-            } else {
-                res.status(400).send("Login failed! :(");
-                return;
-            }
+            bcrypyt.compare(req.body.password, user.password, (err, result) => {
+                if (result) {
+                    let payload = {subject: user._id};
+                    let token = jwt.sign(payload, 'secretKey');
+                    res.status(200).send({token});
+                } else {
+                    res.status(400).send("Login failed! :(");
+                    return;
+                }
+            })
         }
     })
 });
@@ -60,31 +92,35 @@ router.post('/login', (req, res) => {
 router.post('/register', (req, res) => {
     let userData = req.body;
     if (userData.email && userData.password) {
-        const newUser = new userModel({
-            fullName: req.body.fullName,
-            email: req.body.email,
-            password: req.body.password,
-            phoneNumber: req.body.phoneNumber,
-            address: req.body.address,
-            city: req.body.city,
-            country: req.body.country,
-            favoriteItems: req.body.favoriteItems,
-            permissionLevel: req.body.permissionLevel,
-            currency: req.body.currency,
-        })
-        newUser.save((err, registeredUser) => {
-            if (err) {
-                console.log(err)
-            } else {
-                res.status(200).send("Login successed");
-            }
+        bcrypyt.hash(req.body.password, salt, (err, hash) => {
+            const newUser = new userModel({
+                fullName: req.body.fullName,
+                email: req.body.email,
+                password: hash,
+                phoneNumber: req.body.phoneNumber,
+                address: req.body.address,
+                city: req.body.city,
+                country: req.body.country,
+                favoriteItems: req.body.favoriteItems,
+                permissionLevel: req.body.permissionLevel,
+                currency: req.body.currency,
+            })
+            newUser.save((err, registeredUser) => {
+                if (err) {
+                    console.error(err)
+                } else {
+                    let payload = {subject: registeredUser._id};
+                    let token = jwt.sign(payload, 'secretKey');
+                    res.status(200).send({token});
+                }
+            })
         })
     }
 });
 
-router.put('/', (req, res) => {
+router.put('/editMyInfo', (req, res) => {
     const query = {_id: req.body._id};
-    userModel.findOneAndUpdate(query, {$set: {fullName: req.body.fullName, email: req.body.email, password: req.body.password, phoneNumber: req.body.phoneNumber, address: req.body.address, city: req.body.address, country: req.body.country, favoriteItems: req.body.favoriteItems, permissionLevel: req.body.permissionLevel, currency: req.body.currency,}}, (error, data) => {
+    userModel.findOneAndUpdate(query, {$set: {fullName: req.body.fullName, email: req.body.email, phoneNumber: req.body.phoneNumber, address: req.body.address, city: req.body.address, country: req.body.country, favoriteItems: req.body.favoriteItems,}}, (error, data) => {
         if (error) {
             console.error("The is an error with the put request.");
         }
@@ -92,12 +128,41 @@ router.put('/', (req, res) => {
             res.send(data);
         }
     });
-})
+});
 
-router.delete('/', (req, res) => {
+router.put('/changePassword', (req, res) => {
+    const query = {_id: req.body._id};
+    bcrypyt.hash(req.body.password, salt, (err, hash) => {
+        userModel.findOneAndUpdate(query, {$set: {password: hash,}}, (error, data) => {
+            if (error) {
+                console.error("The is an error with the put request.");
+                res.send(false);
+            }
+            else {
+                res.send(true);
+            }
+        });
+    })
+});
+
+router.put('/editPermission', (req, res) => {
+    const query = {_id: req.body._id};
+    userModel.findOneAndUpdate(query, {$set: {permissionLevel: req.body.permissionLevel,}}, (error, data) => {
+        if (error) {
+            console.error("The is an error with the put request.");
+            res.send(false);
+        }
+        else {
+            res.send(true);
+        }
+    })
+});
+
+router.delete('/deleteUser', (req, res) => {
     userModel.findOneAndDelete({_id: req.body._id}, (error) => {
         if (error) {
             console.error("There is an error with the delete request");
+            res.send(false);
         }
         else {
             res.send(`ID ${req.body._id} was deleted`);
