@@ -11,7 +11,7 @@ const catalogSchema = mongoose.Schema(
         images:[String],
         price:Number,
         sale:Boolean,
-        salePrice:Number,
+        oldPrice:Number,
         description:mongoose.Schema.Types.Mixed,
         inStock:Boolean,
         addDate:String
