@@ -27,7 +27,12 @@ router.get("/myPersonalInfo", (req, res) => {
 });
 
 router.get("/usersPermissions", (req, res) => {
-    userModel.find({}, (error, data) => {
+    const currentPage = req.query.page;
+    const itemsLimit = 10;
+    userModel.find({})
+             .skip(itemsLimit * currentPage)
+             .limit(itemsLimit)
+             .exec((error, data) => {
         if (error) {
             console.error("There is an error with the get request.");
         }

@@ -5,10 +5,7 @@ const ratingSchema = mongoose.Schema(
     {
         userId:String,
         itemId:String,
-        rating:Number,
-        sizeRating:String,
-        colorRating:String,
-        comfortRating:String
+        rating:Number
     }
 )
 

@@ -2,7 +2,7 @@ require("../data/database");
 const express = require("express");
 const router = express.Router();
 const catalogModel = require("../models/catalog");
-const itemsLimit = 19;
+const itemsLimit = 10;
 
 router.get("/filteredCatalog", (req, res) => {
     const currentPage = req.query.page;
