@@ -1,0 +1,64 @@
+/* :root {
+    --textFont: "Segoe UI", "Helvetica Neue";
+    --darkPurpleColor: #8e435f;
+    --darkGreyColor: rgb(116, 116, 116);
+    --lightGreyColor: rgb(241, 240, 240);
+} */
+
+header {
+    background-color: var(--lightGreyColor);
+    clear: both;
+    justify-content: center;
+    padding: 5px 5px;
+    position: absolute;
+    display: flex;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    font-family: var(--textFont);
+}
+
+#navBar {
+    flex: 3;
+    margin: 0 0;
+    width: 100%;
+    margin: auto 0;
+    display: inline;
+}
+
+#navBar li {
+    display: inline-block;
+}
+
+#navBar li a{
+    font-weight: bold;
+    color: var(--darkGreyColor);
+}
+
+#logoDiv {
+    flex: 3;
+    text-align: center;
+}
+
+#logo {
+    margin: 0 auto;
+    display: inline;
+    width: 24%;
+    /* height: 50%; */
+    font-family: var(--textFont);
+}
+
+#loginBtn {
+    flex: 3;
+    margin-right: 10px;
+    text-align: right;
+    background: none;
+    border: none;
+}
+
+#loginBtn i {
+    margin-right: 0px;
+    font-size: 25px;
+    color: var(--darkPurpleColor);
+}

@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --textFont: "Segoe UI", "Helvetica Neue";
+    --darkPurpleColor: #8e435f;
+    --darkGreyColor: rgb(116, 116, 116);
+    --lightGreyColor: rgb(241, 240, 240);
+    --blackColor: #000000;
+}
+
+html, body {
+    height: 100%;
+    scroll-behavior: smooth;
+}
