@@ -4,7 +4,9 @@ const { findOne } = require("../models/orders");
 const router = express.Router();
 const orderModel = require("../models/orders");
 const userModel = require("../models/users");
+const catalogModel = require("../models/catalog");
 const nodeMailer = require("../modules/nodeMailer");
+const currencyAPI = require('../modules/currencyAPI');
 const itemsLimit = 10;
 
 router.get("/myOrders", (req, res) => {
@@ -17,21 +19,31 @@ router.get("/myOrders", (req, res) => {
             console.error("There is an error with the get request.");
         }
         else {
-            let orders = [];
-            data.forEach(order => {
-                orders.push({
-                    items: order.items,
-                    status: order.status,
-                    amountToPay: order.amountToPay,
-                    country: order.country,
-                    city: order.city,
-                    address: order.address,
+            if (req.query.currency == "ILS") {
+                currencyAPI.getCurrency(req.query.currency).then(multBy => {
+                    sendMyOrders(data, res, multBy);
                 });
-            });
-            res.send({orders});
+            } else {
+                sendMyOrders(data, res, 1);
+            }
         };
     })
 });
+
+function sendMyOrders(data, res, multBy) {
+    let orders = [];
+    data.forEach(order => {
+        orders.push({
+            items: order.items,
+            status: order.status,
+            amountToPay: order.amountToPay * multBy,
+            country: order.country,
+            city: order.city,
+            address: order.address,
+        });
+    });
+    res.send({orders});
+}
 
 router.get("/allOrders", (req, res) => {
     const currentPage = req.query.page;
@@ -47,39 +59,55 @@ router.get("/allOrders", (req, res) => {
             console.error("There is an error with the get request.");
         }
         else {
-            let orders = [];
-            data.forEach(order => {
-                orders.push({
-                    userId: order.userId,
-                    items: order.items,
-                    status: order.status,
-                    amountToPay: order.amountToPay,
-                    country: order.country,
-                    city: order.city,
-                    address: order.address,
-                    payment: order.payment,
+            if (req.query.currency == "ILS") {
+                currencyAPI.getCurrency(req.query.currency).then(multBy => {
+                    sendAllOrders(data, res, multBy);
                 });
-            });
-            res.send({orders});
+            } else {
+                sendAllOrders(data, res, 1);
+            }
         };
     })
 });
 
+function sendAllOrders(data, res, multBy) {
+    let orders = [];
+    data.forEach(order => {
+        orders.push({
+            userId: order.userId,
+            items: order.items,
+            status: order.status,
+            amountToPay: order.amountToPay * multBy,
+            country: order.country,
+            city: order.city,
+            address: order.address,
+            payment: order.payment,
+        });
+    });
+    res.send({orders});
+}
+
 router.post("/shoppingBag", (req, res) => {
     orderModel.findOne({})
         .exec(function(error, order) {
-            const newOrder = new orderModel({
-                userId: req.body.userId, // TODO: use token
-                items: req.body.items,
-                status: "inBag",
-                amountToPay: req.body.amountToPay,
-                country: req.body.country,
-                city: req.body.city,
-                address: req.body.address,
-                payment: req.body.payment,
-            })
-            newOrder.save().then(() => {
-                res.send(`The order is saved in the DB`);
+            catalogModel.find().where('_id').in(req.body.items).exec((err, records) => {
+                let amountSum = 0;
+                records.forEach(item => {
+                    amountSum += item.price;
+                });
+                const newOrder = new orderModel({
+                    userId: req.body.userId, // TODO: use token
+                    items: req.body.items,
+                    status: "inBag",
+                    amountToPay: amountSum,
+                    country: req.body.country,
+                    city: req.body.city,
+                    address: req.body.address,
+                    payment: req.body.payment,
+                })
+                newOrder.save().then(() => {
+                    res.send(`The order is saved in the DB`);
+                });
             });
         })
 });
@@ -106,6 +134,16 @@ router.put('/editMyOrder', (req, res) => {
                                 nodeMailer.sendMail(user.email, "Order Confirmation",
                                 `Dear ${user.fullName}, your order ${foundOrder._id} has been received. The order will be delivered to you soon.`)
                             }
+                        });
+                        catalogModel.find().where('_id').in(foundOrder.items).exec((err, records) => {
+                            let amountSum = 0;
+                            records.forEach(item => {
+                                amountSum += item.price;
+                            });
+                            foundOrder.amountToPay = amountSum;
+                            foundOrder.save().then(() => {
+                                res.send(`The order is saved in the DB`);
+                            });
                         });
                     } else if (req.body.status == 'cancelRequest') {
                         userModel.findOne({_id: req.body.userId}, (error, user) => {

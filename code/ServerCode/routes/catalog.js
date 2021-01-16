@@ -1,7 +1,10 @@
+require('dotenv').config()
 require("../data/database");
 const express = require("express");
 const router = express.Router();
 const catalogModel = require("../models/catalog");
+const userModel = require("../models/users");
+const currencyAPI = require('../modules/currencyAPI');
 const itemsLimit = 10;
 
 router.get("/filteredCatalog", (req, res) => {
@@ -44,26 +47,35 @@ router.get("/filteredCatalog", (req, res) => {
             console.error("There is an error with the get request.");
         }
         else {
-            let items = [];
-            data.forEach(item => {
-                items.push({
-                    title: item.title,
-                    itemType: item.itemType,
-                    category: item.category,
-                    type: item.type,
-                    size: item.size,
-                    images: item.images,
-                    price: item.price,
-                    sale: item.sale,
-                    oldPrice: item.oldPrice,
-                    description: item.description,
-                })
-            });
-            res.send(items);
+            if (req.query.currency == "ILS") {
+                currencyAPI.getCurrency(req.query.currency).then(multBy => {
+                    sendCatalogItems(data, res, multBy);
+                });
+            } else {
+                sendCatalogItems(data, res, 1);
+            }
         };
     })
 });
 
+function sendCatalogItems(data, res, multBy) {
+    let items = [];
+    data.forEach(item => {
+        items.push({
+            title: item.title,
+            itemType: item.itemType,
+            category: item.category,
+            type: item.type,
+            size: item.size,
+            images: item.images,
+            price: item.price * multBy,
+            sale: item.sale,
+            oldPrice: item.oldPrice * multBy,
+            description: item.description,
+        })
+    });
+    res.send(items);
+}
 
 router.post("/addItem", (req, res) => {
     catalogModel.findOne({})
