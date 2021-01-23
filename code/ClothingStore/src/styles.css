@@ -15,17 +15,12 @@
 }
 
 html, body{
-    /* min-height: 100vh;
-  height: auto; */
-    /* height: 100%; */
-    /* overflow: auto; */
     scroll-behavior: smooth;
 }
 
 body {
-    
+    background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url(assets/aboutusBG1.jpg);
+    background-attachment: fixed;
+    background-size: cover;
     margin-bottom: 70px;
-    /* position: relative;
-    height: auto;
-    min-height: 100%; */
 }
