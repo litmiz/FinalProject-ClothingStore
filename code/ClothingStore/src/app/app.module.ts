@@ -7,13 +7,27 @@ import { HeaderComponent } from './header/header.component';
 import { BodyComponent } from './body/body.component';
 import { FooterComponent } from './footer/footer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { HomeComponent } from './home/home.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { MainAppComponent } from './main-app/main-app.component';
+import { AboutTheCompanyComponent } from './about-the-company/about-the-company.component';
+import { ShippingInfoComponent } from './shipping-info/shipping-info.component';
+import { ReturnsComponent } from './returns/returns.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     BodyComponent,
-    FooterComponent
+    FooterComponent,
+    AboutUsComponent,
+    HomeComponent,
+    ContactUsComponent,
+    MainAppComponent,
+    AboutTheCompanyComponent,
+    ShippingInfoComponent,
+    ReturnsComponent
   ],
   imports: [
     BrowserModule,

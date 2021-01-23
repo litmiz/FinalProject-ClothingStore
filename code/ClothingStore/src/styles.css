@@ -6,13 +6,26 @@
 
 :root {
     --textFont: "Segoe UI", "Helvetica Neue";
+    --roundTextFont: 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     --darkPurpleColor: #8e435f;
+    --darkGreyBlueColor: #495057;
     --darkGreyColor: rgb(116, 116, 116);
     --lightGreyColor: rgb(241, 240, 240);
     --blackColor: #000000;
 }
 
-html, body {
-    height: 100%;
+html, body{
+    /* min-height: 100vh;
+  height: auto; */
+    /* height: 100%; */
+    /* overflow: auto; */
     scroll-behavior: smooth;
+}
+
+body {
+    
+    margin-bottom: 70px;
+    /* position: relative;
+    height: auto;
+    min-height: 100%; */
 }

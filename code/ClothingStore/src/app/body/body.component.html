@@ -1,1 +1,7 @@
 <!-- <p>body works!</p> -->
+<main>
+    <app-home *ngIf="choice == 'home'"></app-home>
+    <app-about-us *ngIf="choice == 'about-us'"></app-about-us>
+    <app-contact-us *ngIf="choice == 'contact-us'"></app-contact-us>
+</main>
+

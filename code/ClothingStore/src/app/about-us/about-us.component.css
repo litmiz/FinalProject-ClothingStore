@@ -1,0 +1,22 @@
+main {
+    /* height: 100%; */
+    /* height: 100vh; */
+    /* display: block; */
+        /* min-height: 100vh; */
+
+    overflow: auto;
+}
+
+section {
+    display: flex;
+}
+
+section app-shipping-info {
+    display: inline-block;
+    flex: 2;
+}
+
+section app-returns {
+    display: inline-block;
+    flex: 2;
+}

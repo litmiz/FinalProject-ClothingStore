@@ -1,6 +1,6 @@
 <header>
     <ul ngbNav [activeId]="1" class="nav-tabs justify-content-left" id="navBar">
-        <li [ngbNavItem]="1">
+        <li [ngbNavItem]="1" (click)="chooseFromMenu('home')">
           <a ngbNavLink>HOME</a>
           <ng-template ngbNavContent>
             <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
@@ -9,7 +9,7 @@
               salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
           </ng-template>
         </li>
-        <li [ngbNavItem]="2">
+        <li [ngbNavItem]="2" (click)="chooseFromMenu('about-us')">
           <a ngbNavLink>ABOUT US</a>
           <ng-template ngbNavContent>
             <p>Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko
@@ -30,7 +30,7 @@
             <button ngbDropdownItem>Separated link</button> -->
           </div>
         </li>
-        <li [ngbNavItem]="3">
+        <li [ngbNavItem]="3" (click)="chooseFromMenu('contact-us')">
             <a ngbNavLink>CONTACT US</a>
             <ng-template ngbNavContent>
               <p>Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko
@@ -57,8 +57,8 @@
     <!-- <div [ngbNavOutlet]="nav" class="mt-2"></div> -->
     
     <div id="logoDiv">
-        <img id="logo" src="../../assets/LogoHeader.png" alt="LOGO" class="justify-content-center">
+        <img id="logo" src="../../assets/NewLOGOHeader.png" alt="LOGO" class="justify-content-center">
     </div>
     
-    <button id="loginBtn" class="justify-content-right"><i class="fas fa-user"></i></button>
+    <a id="loginBtn" class="justify-content-right" href="#"><i class="fas fa-user"></i></a>
 </header>

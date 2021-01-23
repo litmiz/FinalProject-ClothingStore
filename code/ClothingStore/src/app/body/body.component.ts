@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-body',
@@ -8,6 +8,14 @@ import { Component, OnInit } from '@angular/core';
 export class BodyComponent implements OnInit {
 
   constructor() { }
+
+  @Input() choice;
+
+  ngOnChanges(changes:any){
+    if(changes.choice){
+      console.log(changes.choice);
+    }
+  }
 
   ngOnInit(): void {
   }
