@@ -14,6 +14,8 @@ import { MainAppComponent } from './main-app/main-app.component';
 import { AboutTheCompanyComponent } from './about-the-company/about-the-company.component';
 import { ShippingInfoComponent } from './shipping-info/shipping-info.component';
 import { ReturnsComponent } from './returns/returns.component';
+import { FormsModule , ReactiveFormsModule} from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -31,8 +33,11 @@ import { ReturnsComponent } from './returns/returns.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,1 +1,32 @@
-<p>contact-us works!</p>
+<section>
+    <h1>CONTACT US</h1>
+    <hr>
+    <p>We'd like to hear from you!</p>
+    <p>If you have any suggestions, complaints or ideas, please fill the following form. If you are looking for a job and you would like to work with us, you can also use the following form and add your CV.</p>
+    <form [formGroup]="contactForm" (submit)="sendToServer()">
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Full name</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="first name last name" formControlName="fullName">
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" formControlName="email">
+        </div>
+        <select class="form-select" aria-label="Default select example" formControlName="queryType">
+            <option selected value="0">Choose the query type:</option>
+            <option value="1">Suggestion</option>
+            <option value="2">Complaint</option>
+            <option value="3">Idea</option>
+            <option value="4">Looking for a job</option>
+          </select>
+          <div class="custom-file" *ngIf="contactForm.controls.queryType.value == 4">
+            <input type="file" class="custom-file-input" id="customFile">
+            <label class="custom-file-label" for="customFile">Add your CV</label>
+          </div>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Query content</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="queryContent"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+</section>

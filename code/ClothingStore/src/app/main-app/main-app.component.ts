@@ -6,8 +6,8 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
   styleUrls: ['./main-app.component.css']
 })
 export class MainAppComponent implements OnInit {
-  userChoice:string = "about-us";
-  bgImage:string = "aboutusBG1.jpg";
+  userChoice:string = "home";
+  bgImage:string = "";
   constructor(private renderer: Renderer2) { }
 
   ngOnInit(): void {
@@ -15,10 +15,10 @@ export class MainAppComponent implements OnInit {
 
   chooseFromMenu(choice:string){
     this.userChoice = choice;
-    if (choice != "about-us") {
-      this.bgImage = "BG2.jpg";
-    } else {
-      this.bgImage = "aboutusBG1.jpg";
+    if (choice == "about-us") {
+      this.bgImage = "aboutusBG1.jpg"
+    } else if (choice == "contact-us") {
+      this.bgImage = "BG5.jpg";
     }
     this.renderer.setStyle(document.body, 'background', `linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url(../../assets/${this.bgImage})`);
   }

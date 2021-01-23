@@ -8,6 +8,8 @@
     --textFont: "Segoe UI", "Helvetica Neue";
     --roundTextFont: 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     --darkPurpleColor: #8e435f;
+    --lightPurpleColor: #c36789;
+    --darkRedColor: #66263d;
     --darkGreyBlueColor: #495057;
     --darkGreyColor: rgb(116, 116, 116);
     --lightGreyColor: rgb(241, 240, 240);
@@ -19,7 +21,7 @@ html, body{
 }
 
 body {
-    background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url(assets/aboutusBG1.jpg);
+    background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url();
     background-attachment: fixed;
     background-size: cover;
     margin-bottom: 70px;

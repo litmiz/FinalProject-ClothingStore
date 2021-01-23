@@ -1,0 +1,82 @@
+:root {
+    --textFont: "Segoe UI", "Helvetica Neue";
+    --roundTextFont: 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    --darkPurpleColor: #8e435f;
+    --lightPurpleColor: #c36789;
+    --darkRedColor: #66263d;
+    --darkGreyBlueColor: #495057;
+    --darkGreyColor: rgb(116, 116, 116);
+    --lightGreyColor: rgb(241, 240, 240);
+    --blackColor: #000000;
+}
+
+section {
+    text-align: center;
+    margin-top: 10px;
+}
+
+h1 {
+    font-family: var(--roundTextFont);
+    color: var(--darkGreyBlueColor);
+    font-weight: bold;
+}
+
+hr {
+    margin: 0 auto;
+    margin-bottom: 15px;
+    width: 350px;
+    height: 4px;
+    border-radius: 8px;
+    background-color: var(--darkPurpleColor);
+}
+
+p {
+    margin: 0 auto;
+    width: 60%;
+}
+
+form {
+    margin-top: 15px;
+}
+
+form input, textarea, .custom-file-label {
+    margin: 0 auto;
+    width: 60%;
+    border: 1px solid var(--darkRedColor);
+}
+
+form select {
+    width: 250px;
+    height: 30px;
+    border-radius: 4px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.custom-file {
+    margin-bottom: 15px; 
+}
+
+.custom-file-label {
+    text-align: left;
+}
+
+button {
+    background-color: var(--darkRedColor);
+    border: 2px solid var(--darkPurpleColor);
+}
+
+button:hover {
+    background-color: var(--darkPurpleColor);
+    border: 2px solid var(--darkRedColor);
+}
+
+button:focus{
+    background-color: var(--darkRedColor)!important;
+    border: 2px solid var(--darkPurpleColor)!important;
+}
+
+.form-control:focus, .btn:focus, .custom-file-label::after, input[type="file"]:focus {
+    border-color: var(--lightPurpleColor) !important;
+    box-shadow: inset 0 3px 3px rgba(0, 0, 0, 0.1)!important;
+}
