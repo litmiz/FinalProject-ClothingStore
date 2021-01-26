@@ -19,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MainCarouselComponent } from './main-carousel/main-carousel.component';
 import { CatalogPreviewComponent } from './catalog-preview/catalog-preview.component';
 import { LoginComponent } from './login/login.component';
+import { CatalogItemComponent } from './catalog-item/catalog-item.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { LoginComponent } from './login/login.component';
     ReturnsComponent,
     MainCarouselComponent,
     CatalogPreviewComponent,
-    LoginComponent
+    LoginComponent,
+    CatalogItemComponent
   ],
   imports: [
     BrowserModule,

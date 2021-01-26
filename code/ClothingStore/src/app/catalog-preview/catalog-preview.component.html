@@ -1,1 +1,15 @@
-<p>catalog-preview works!</p>
+<section>
+    <h2>OUR NEWEST ITEMS</h2>
+    <hr>
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3" *ngFor="let img of images; index as i">
+                    <div class="card mb-3 box-shadow">
+                        <img class="card-img-top" [src]="img" alt="Card image cap">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

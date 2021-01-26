@@ -1,0 +1,57 @@
+:root {
+    --textFont: "Segoe UI", "Helvetica Neue";
+    --roundTextFont: 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    --darkPurpleColor: #8e435f;
+    --darkGreyBlueColor: #495057;
+    --darkGreyColor: rgb(116, 116, 116);
+    --lightGreyColor: rgb(241, 240, 240);
+    --blackColor: #000000;
+}
+
+section {
+    margin-top: 20px;
+    text-align: center;
+}
+
+h2 {
+    font-family: var(--roundTextFont);
+    color: var(--darkGreyBlueColor);
+    font-weight: bold;
+}
+
+hr {
+    margin: 0 auto;
+    margin-bottom: 15px;
+    width: 350px;
+    height: 4px;
+    border-radius: 8px;
+    background-color: var(--darkPurpleColor);
+}
+
+/* @media (min-width: 1200px) {
+    .container, .container-lg, .container-md, .container-sm, .container-xl {
+        max-width: 70%;
+    }
+}
+
+@media (min-width: 992px) {
+    .container, .container-lg, .container-md, .container-sm {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container, .container-md, .container-sm {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 576px) {
+    .container, .container-sm {
+        max-width: 540px;
+    }
+} */
+
+.container, .container-md, .container-sm {
+    max-width: 70%;
+}

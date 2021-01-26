@@ -6,8 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./catalog-preview.component.css']
 })
 export class CatalogPreviewComponent implements OnInit {
+  images = [];
 
-  constructor() { }
+  constructor() { 
+    for (let i = 0; i < 4; i++) {
+      this.images.push(`../../assets/homeCarousel0${1+ (i % 3)}.png`)
+    }
+  }
 
   ngOnInit(): void {
   }
