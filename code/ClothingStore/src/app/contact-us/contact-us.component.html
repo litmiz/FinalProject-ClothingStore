@@ -6,11 +6,11 @@
     <form [formGroup]="contactForm" (submit)="sendToServer()">
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Full name</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="first name last name" formControlName="fullName">
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="first name last name" formControlName="fullName" required>
         </div>
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Email address</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" formControlName="email">
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" formControlName="email" required>
         </div>
         <select class="form-select" aria-label="Default select example" formControlName="queryType">
             <option selected value="0">Choose the query type:</option>
@@ -27,6 +27,7 @@
             <label for="exampleFormControlTextarea1" class="form-label">Query content</label>
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="queryContent"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Send</button>
+        <button type="submit" class="btn btn-primary" [disabled]="contactForm.invalid">Send</button>
+        <p>{{sentToServerMsg}}</p>
     </form>
 </section>

@@ -1,9 +1,3 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
 :root {
     --textFont: "Segoe UI", "Helvetica Neue";
     --roundTextFont: 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -17,21 +11,19 @@
     --blackColor: #000000;
 }
 
-html, body{
-    scroll-behavior: smooth;
+.carousel-caption h3 {
+    color: var(--lightPinkColor);
+    font-family: var(--textFont);
+    font-size: 3.5vw;
+    font-weight: bolder;
+    margin: 0 auto;
+    -webkit-text-stroke-color: var(--blackColor);
+    -webkit-text-stroke-width: 1px;
 }
 
-body {
-    background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url();
-    background-attachment: fixed;
-    background-size: cover;
-    margin-bottom: 70px;
-}
-
-.carousel-control-prev {
-    left: 15%;
-}
-
-.carousel-control-next {
-    right: 15%;
+img {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }

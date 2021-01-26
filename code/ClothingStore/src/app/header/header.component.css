@@ -1,9 +1,9 @@
-/* :root {
+:root {
     --textFont: "Segoe UI", "Helvetica Neue";
     --darkPurpleColor: #8e435f;
     --darkGreyColor: rgb(116, 116, 116);
     --lightGreyColor: rgb(241, 240, 240);
-} */
+}
 
 header {
     background-color: var(--lightGreyColor);
@@ -53,14 +53,21 @@ header {
 #loginBtn {
     flex: 3;
     margin: auto 0;
+    /* padding: 0 auto; */
+    /* width: 100px; */
     margin-right: 10px;
     text-align: right;
-    background: none;
-    border: none;
+    /* background: none; */
+    /* border: none; */
 }
 
-#loginBtn i {
+#loginBtn button {
+    font-weight: bold;
+    color: var(--darkGreyColor);
+}
+
+/* #loginBtn i {
     margin-right: 0px;
     font-size: 28px;
     color: var(--darkPurpleColor);
-}
+} */

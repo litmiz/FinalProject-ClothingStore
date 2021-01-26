@@ -3,6 +3,7 @@
     --roundTextFont: 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     --darkPurpleColor: #8e435f;
     --lightPurpleColor: #c36789;
+    --lightPinkColor: #f381ab;
     --darkRedColor: #66263d;
     --darkGreyBlueColor: #495057;
     --darkGreyColor: rgb(116, 116, 116);
@@ -32,7 +33,7 @@ hr {
 
 p {
     margin: 0 auto;
-    width: 60%;
+    width: 50%;
 }
 
 form {
@@ -41,7 +42,7 @@ form {
 
 form input, textarea, .custom-file-label {
     margin: 0 auto;
-    width: 60%;
+    width: 50%;
     border: 1px solid var(--darkRedColor);
 }
 
@@ -64,6 +65,11 @@ form select {
 button {
     background-color: var(--darkRedColor);
     border: 2px solid var(--darkPurpleColor);
+}
+
+button:disabled {
+    background-color: var(--lightPinkColor);
+    border: 1px solid var(--lightPurpleColor);
 }
 
 button:hover {

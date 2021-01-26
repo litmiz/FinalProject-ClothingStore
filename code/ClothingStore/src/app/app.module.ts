@@ -16,6 +16,9 @@ import { ShippingInfoComponent } from './shipping-info/shipping-info.component';
 import { ReturnsComponent } from './returns/returns.component';
 import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MainCarouselComponent } from './main-carousel/main-carousel.component';
+import { CatalogPreviewComponent } from './catalog-preview/catalog-preview.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { HttpClientModule } from '@angular/common/http';
     MainAppComponent,
     AboutTheCompanyComponent,
     ShippingInfoComponent,
-    ReturnsComponent
+    ReturnsComponent,
+    MainCarouselComponent,
+    CatalogPreviewComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

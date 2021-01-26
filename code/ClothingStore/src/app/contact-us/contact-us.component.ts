@@ -10,14 +10,15 @@ import { Query } from '../query';
 })
 export class ContactUsComponent implements OnInit {
   contactForm;
+  sentToServerMsg;
 
   constructor(private formBuilder:FormBuilder, private api:ApiService) {
     this.contactForm = this.formBuilder.group({
-      fullName: ['', Validators.required],
-      email: ['', Validators.required],
+      fullName: [null, Validators.required],
+      email: [null, Validators.required],
       queryType: ['0', Validators.required],
       CV: [''],
-      queryContent: ['', Validators.required],
+      queryContent: [null, Validators.required],
     })
   }
 
@@ -35,6 +36,7 @@ export class ContactUsComponent implements OnInit {
     console.log(newQuery);
     this.api.sendQuery(newQuery).subscribe(res => {
       console.log("I DOOOOOOOOOOO");
+      this.sentToServerMsg = "Your query has been received and will be answered ASAP."
     })
   }
 

@@ -15,7 +15,9 @@ export class MainAppComponent implements OnInit {
 
   chooseFromMenu(choice:string){
     this.userChoice = choice;
-    if (choice == "about-us") {
+    if (choice == "home" || choice == "login") {
+      this.bgImage = "";
+    } else if (choice == "about-us") {
       this.bgImage = "aboutusBG1.jpg"
     } else if (choice == "contact-us") {
       this.bgImage = "BG5.jpg";
