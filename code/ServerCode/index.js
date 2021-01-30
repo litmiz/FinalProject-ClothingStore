@@ -16,5 +16,6 @@ app.use("/users", usersRouter);
 app.use("/orders", ordersRouter);
 app.use("/ratings", ratingsRouter);
 app.use("/sendQuery", sendQueryRouter);
+app.use(express.static('public'));
 
 app.listen(3000, () => console.log("The Dress@Home App is working..."));

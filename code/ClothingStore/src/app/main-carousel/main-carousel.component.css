@@ -12,17 +12,17 @@
 }
 
 .carousel-caption h3 {
-    color: var(--lightPinkColor);
+    color: white;
     font-family: var(--textFont);
     font-size: 3.5vw;
-    font-weight: bolder;
+    /* font-weight: bolder; */
     margin: 0 auto;
     -webkit-text-stroke-color: var(--blackColor);
-    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-width: 1.5px;
 }
 
 img {
-    width: 70%;
+    width: 65%;
     margin-left: auto;
     margin-right: auto;
     display: block;

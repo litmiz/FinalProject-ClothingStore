@@ -1,0 +1,22 @@
+:root {
+    --textFont: "Segoe UI", "Helvetica Neue";
+    --roundTextFont: 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    --darkPurpleColor: #8e435f;
+    --darkRedColor: #66263d;
+    --darkGreyBlueColor: #495057;
+    --darkGreyColor: rgb(116, 116, 116);
+    --lightGreyColor: rgb(241, 240, 240);
+    --blackColor: #000000;
+}
+
+.card-text {
+    color: var(--darkRedColor);
+    font-weight: bold;
+    /* color: whitesmoke; */
+}
+
+.card-text span {
+    font-size: 12px;
+    margin-left: 10px;
+    text-decoration: line-through;
+}

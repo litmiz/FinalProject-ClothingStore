@@ -17,12 +17,14 @@ h2 {
     font-family: var(--roundTextFont);
     color: var(--darkGreyBlueColor);
     font-weight: bold;
+    font-size: 1.5rem;
 }
 
 hr {
     margin: 0 auto;
     margin-bottom: 15px;
-    width: 350px;
+    /* width: 350px; */
+    width: 150px;
     height: 4px;
     border-radius: 8px;
     background-color: var(--darkPurpleColor);
@@ -53,5 +55,5 @@ hr {
 } */
 
 .container, .container-md, .container-sm {
-    max-width: 70%;
+    max-width: 80%;
 }

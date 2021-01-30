@@ -1,12 +1,13 @@
 <section>
     <h2>OUR NEWEST ITEMS</h2>
     <hr>
-    <div class="album py-5 bg-light">
+    <div class="album py-5 bg-light" style="padding: 2px 2px !important;">
         <div class="container">
             <div class="row">
-                <div class="col-md-3" *ngFor="let img of images; index as i">
-                    <div class="card mb-3 box-shadow">
-                        <img class="card-img-top" [src]="img" alt="Card image cap">
+                <div class="col-md-2" *ngFor="let item of items; index as i">
+                    <div class="mb-2 box-shadow">
+                        <!-- <img class="card-img-top" [src]="img" alt="Card image cap"> -->
+                        <app-catalog-item [itemCatalogData]="item"></app-catalog-item>
                     </div>
                 </div>
             </div>
