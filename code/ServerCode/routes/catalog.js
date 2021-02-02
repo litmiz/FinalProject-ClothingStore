@@ -7,6 +7,25 @@ const userModel = require("../models/users");
 const currencyAPI = require('../modules/currencyAPI');
 const itemsLimit = 10;
 
+router.get("/getItem", (req, res) => {
+    const _id = req.query._id;
+    console.log(_id);
+    catalogModel.findById(_id, (error, data) => {
+        if (error) {
+            console.error("There is an error with the get request.");
+        }
+        else {
+            if (req.query.currency == "ILS") {
+                currencyAPI.getCurrency(req.query.currency).then(multBy => {
+                    sendCatalogItems([data], res, multBy);
+                });
+            } else {
+                sendCatalogItems([data], res, 1);
+            }
+        };
+    })
+});
+
 router.get("/filteredCatalog", (req, res) => {
     const currentPage = req.query.page;
     let filter = {inStock: true};
@@ -15,7 +34,11 @@ router.get("/filteredCatalog", (req, res) => {
         filter["itemType"] = req.query.itemType;
     }
     if (req.query.category) {
-        filter["category"] = req.query.category;
+        if (req.query.category == 'Man' || req.query.category == 'Woman') {
+            filter["$or"] = [{"category": req.query.category}, {"category": "All"}];
+        } else {
+            filter["category"] = req.query.category;
+        }
     }
     if (req.query.type) {
         filter["type"] = req.query.type;
@@ -62,6 +85,7 @@ function sendCatalogItems(data, res, multBy) {
     let items = [];
     data.forEach(item => {
         items.push({
+            _id: item._id,
             title: item.title,
             itemType: item.itemType,
             category: item.category,

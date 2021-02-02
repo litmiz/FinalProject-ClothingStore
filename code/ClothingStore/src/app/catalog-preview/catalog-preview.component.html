@@ -7,7 +7,7 @@
                 <div class="col-md-2" *ngFor="let item of items; index as i">
                     <div class="mb-2 box-shadow">
                         <!-- <img class="card-img-top" [src]="img" alt="Card image cap"> -->
-                        <app-catalog-item [itemCatalogData]="item"></app-catalog-item>
+                        <app-catalog-item [itemCatalogData]="item" (mainMenuChoice)="chooseFromMenu($event)"></app-catalog-item>
                     </div>
                 </div>
             </div>

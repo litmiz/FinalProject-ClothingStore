@@ -9,6 +9,10 @@
     --blackColor: #000000;
 }
 
+.card {
+    cursor: pointer;
+}
+
 .card-text {
     color: var(--darkRedColor);
     font-weight: bold;
@@ -18,5 +22,6 @@
 .card-text span {
     font-size: 12px;
     margin-left: 10px;
+    margin-right: 10px;
     text-decoration: line-through;
 }

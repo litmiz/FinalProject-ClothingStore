@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { ApiService } from '../api.service';
 
@@ -9,6 +9,7 @@ import { ApiService } from '../api.service';
 })
 export class CatalogPreviewComponent implements OnInit {
   items = [];
+  @Output() mainMenuChoice = new EventEmitter();
 
   constructor(private api:ApiService) { 
   }
@@ -29,6 +30,11 @@ export class CatalogPreviewComponent implements OnInit {
       // });
     })
   }
-  
+
+  chooseFromMenu(choice):void
+  {
+    console.log("preview");
+    this.mainMenuChoice.emit(choice);
+  }
 
 }

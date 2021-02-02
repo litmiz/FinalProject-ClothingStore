@@ -13,7 +13,16 @@ export class ApiService {
     return this.http.post(environment.queryUrl, query);
   }
 
-  getCatalog(){
-    return this.http.get(environment.catalogUrl, {params: new HttpParams().set('page', '0')});
+  getCatalog(category=null){
+    let httpParams = {};
+    httpParams['page'] = '0';
+    if (category != null) {
+      httpParams['category'] = category;
+    }
+    return this.http.get(environment.catalogUrl, {params: httpParams});
+  }
+
+  getItem(id){
+    return this.http.get(environment.itemUrl, {params: new HttpParams().set('_id', id)});
   }
 }

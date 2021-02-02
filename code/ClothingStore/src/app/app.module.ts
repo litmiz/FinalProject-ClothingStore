@@ -7,6 +7,7 @@ import { HeaderComponent } from './header/header.component';
 import { BodyComponent } from './body/body.component';
 import { FooterComponent } from './footer/footer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { GalleryModule } from 'ng-gallery';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { HomeComponent } from './home/home.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
@@ -20,6 +21,8 @@ import { MainCarouselComponent } from './main-carousel/main-carousel.component';
 import { CatalogPreviewComponent } from './catalog-preview/catalog-preview.component';
 import { LoginComponent } from './login/login.component';
 import { CatalogItemComponent } from './catalog-item/catalog-item.component';
+import { ItemPageComponent } from './item-page/item-page.component';
+import { CatalogPageComponent } from './catalog-page/catalog-page.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,9 @@ import { CatalogItemComponent } from './catalog-item/catalog-item.component';
     MainCarouselComponent,
     CatalogPreviewComponent,
     LoginComponent,
-    CatalogItemComponent
+    CatalogItemComponent,
+    ItemPageComponent,
+    CatalogPageComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +50,8 @@ import { CatalogItemComponent } from './catalog-item/catalog-item.component';
     ReactiveFormsModule,
     AppRoutingModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    GalleryModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,25 @@
+<section>
+    <h2>{{item["title"]}}</h2>
+    <hr>
+    <p>Item code: {{item["_id"]}}</p>
+    <gallery [items]="images" thumbPosition="left" [nav]="false"></gallery>
+    <article>
+      <p>{{item["price"]}} <span *ngIf="item['sale']">{{item["oldPrice"]}}</span></p>
+      <p>Color: {{item['description']['Color']}}</p>
+      <p>Size:</p>
+      <div *ngFor="let sz of item['size'] | keyvalue">
+        <button (click)="sizeDesc = sz.value" [disabled]="!sz.value.inStock">{{sz.key}}</button>
+      </div>
+      <div *ngFor="let szDesc of sizeDesc | keyvalue">
+        <p *ngIf="szDesc.key != 'inStock'">{{szDesc.key}}: {{szDesc.value}}</p>
+      </div>
+      <p>Description:</p>
+      <div *ngFor="let desc of item['description'] | keyvalue">
+        <p *ngIf="desc.key != 'Color'">{{desc.key}}: {{desc.value}}</p>
+      </div>
+    </article>
+    <aside>
+      <i class="fas fa-heart"></i>
+      <button>Add to bag</button>
+    </aside>
+</section>

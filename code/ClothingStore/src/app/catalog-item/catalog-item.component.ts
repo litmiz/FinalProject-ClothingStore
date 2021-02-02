@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -8,18 +8,19 @@ import { environment } from 'src/environments/environment';
 })
 export class CatalogItemComponent implements OnInit {
   @Input() itemCatalogData;
+  @Output() mainMenuChoice = new EventEmitter();
+  _id;
   img;
   price;
   oldPrice;
 
   constructor() { }
-
   ngOnInit(): void {
   }
 
   ngOnChanges(changes:any){
     if(changes.itemCatalogData){
-      console.log(changes.itemCatalogData);
+      this._id = `item-page-${this.itemCatalogData._id}`;
       this.img = `${environment.serverUrl}/${this.itemCatalogData.images[0]}`;
       this.price = `${this.itemCatalogData.price}$`;
       if (this.itemCatalogData.sale) {
@@ -28,5 +29,12 @@ export class CatalogItemComponent implements OnInit {
         this.oldPrice = ``;
       }
     }
+  }
+
+  chooseFromMenu(choice):void
+  {
+    console.log("item");
+    console.log(this._id);
+    this.mainMenuChoice.emit(choice);
   }
 }

@@ -15,14 +15,18 @@ export class MainAppComponent implements OnInit {
 
   chooseFromMenu(choice:string){
     this.userChoice = choice;
-    if (choice == "home" || choice == "login") {
+    if (choice == "home" || choice == "login" || choice == "item-page" || choice == "catalog-page") {
       this.bgImage = "";
     } else if (choice == "about-us") {
       this.bgImage = "aboutusBG1.jpg"
     } else if (choice == "contact-us") {
       this.bgImage = "BG5.jpg";
     }
-    this.renderer.setStyle(document.body, 'background', `linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url(../../assets/${this.bgImage})`);
+    if (this.bgImage) {
+      this.renderer.setStyle(document.body, 'background', `linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url(../../assets/${this.bgImage})`);
+    } else {
+      this.renderer.setStyle(document.body, 'background', "");
+    }
   }
 
 }

@@ -1,8 +1,8 @@
 <!-- <img class="card-img-top" src='../../assets/homeCarousel02.png'> -->
-<div class="card" style="width: 70%">
+<div class="card" style="width: 70%" (click)="chooseFromMenu(_id)">
     <img class="card-img-top" [src]="img">
     <div class="card-body">
-      <p class="card-text">{{price}} <span>{{oldPrice}}</span></p>
+      <p class="card-text">{{price}} <span>{{oldPrice}}</span><i class="fas fa-cart-plus"></i></p>
       <!-- <p class="card-text">{{oldPrice}}</p> -->
     </div>
 </div>

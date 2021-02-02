@@ -20,4 +20,10 @@ export class BodyComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  chooseFromMenu(choice):void
+  {
+    console.log("body");
+    this.choice = choice;
+  }
+
 }

@@ -8,11 +8,26 @@ import { Component, OnInit,  Output, EventEmitter} from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   @Output() mainMenuChoice = new EventEmitter();
+  choice = '1';
   constructor() { }
 
   chooseFromMenu(choice):void
   {
     this.mainMenuChoice.emit(choice);
+    switch (choice) {
+      case "home":
+        this.choice = '1';
+        break;
+      case "about-us":
+        this.choice = '2';
+        break;
+      case "contact-us":
+        this.choice = '3';
+        break;
+      default: // Catalog
+        this.choice = '4';
+        break;
+    }
   }
 
   ngOnInit(): void {
