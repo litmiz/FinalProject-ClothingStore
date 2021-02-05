@@ -1,22 +1,15 @@
 require('dotenv').config()
 const express = require("express");
 const router = express.Router();
+const multer = require('multer');
+const upload = multer({dest: 'sendQuery/'});
 const nodeMailer = require("../modules/nodeMailer");
 const queryTypes = ["no type", "suggestion", "complaint", "idea", "Looking for a job"]
 
-router.post("/", (req, res) => {
-    nodeMailer.sendMail(process.env.EMAIL, `${queryTypes[ req.body.queryType]} - from ${req.body.fullName}`, `${req.body.queryContent}\n\n Customer email - ${req.body.email}`);
-    console.log(req.body);
+router.post("/", upload.single('cv'), (req, res) => {
+    const q = JSON.parse(req.body.query);
+    nodeMailer.sendMail(process.env.EMAIL, `${queryTypes[q.queryType]} - from ${q.fullName}`, `${q.queryContent}\n\n Customer email - ${q.email}`, req.file);
     res.end();
-    // ratingModel.findOne({})
-    //     .exec(function(error, rating) {
-    //         const newRating = new ratingModel({
-    //             userId: req.body.userId,
-    //             itemId: req.body.itemId,
-    //             rating: req.body.rating,
-    //         })
-    //         newRating.save().then(() => res.send(`The rating is saved in the DB`));
-    //     })
 });
 
 module.exports = router;

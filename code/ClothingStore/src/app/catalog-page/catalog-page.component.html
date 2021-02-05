@@ -1,12 +1,64 @@
 <section>
-    <h2>Our {{category}} Catalog</h2>
+    <h2>Our {{category}} Catalog </h2>
     <hr>
+    <ul ngbNav #nav="ngbNav" [activeId]="0" class="nav-tabs justify-content-left">
+        <li [ngbNavItem]="1">
+            <a ngbNavLink (click)="getCatalog('Clothes')">Clothes</a>
+            <ng-template ngbNavContent>
+                <button class="navBtn" (click)="getCatalog('Clothes')">All</button>
+                <button class="navBtn" (click)="getCatalog('Clothes', 'Tops')">Tops</button>
+                <button class="navBtn" (click)="getCatalog('Clothes', 'Jeans')">Jeans</button>
+                <button class="navBtn" (click)="getCatalog('Clothes', 'Trousers')">Trousers</button>
+                <button class="navBtn" *ngIf="category == 'Woman'" (click)="getCatalog('Clothes', 'Skirts')">Skirts</button>
+                <button class="navBtn" *ngIf="category == 'Woman'" (click)="getCatalog('Clothes', 'Dresses')">Dresses</button>
+                <button class="navBtn" (click)="getCatalog('Clothes', 'Underwear')">Underwear</button>
+                <button class="navBtn" *ngIf="category == 'Man'" (click)="getCatalog('Clothes', 'Suits')">Suits</button>
+                <button class="navBtn" (click)="getCatalog('Clothes', 'Coats & Jackets')">Coats & Jackets</button>
+                <button class="navBtn" (click)="getCatalog('Clothes', 'Swimwear')">Swimwear</button>
+            </ng-template>
+        </li>
+        <li [ngbNavItem]="2">
+            <a ngbNavLink (click)="getCatalog('Shoes')">Shoes</a>
+            <ng-template ngbNavContent>
+                <button class="navBtn" (click)="getCatalog('Shoes')">All</button>
+                <button class="navBtn" (click)="getCatalog('Shoes', 'Boots')">Boots</button>
+                <button class="navBtn" (click)="getCatalog('Shoes', 'Sandals')">Sandals</button>
+                <button class="navBtn" (click)="getCatalog('Shoes', 'Slippers & Flip flop')">Slippers & Flip flop</button>
+                <button class="navBtn" (click)="getCatalog('Shoes', 'Sneakers')">Sneakers</button>
+                <button class="navBtn" *ngIf="category == 'Woman'" (click)="getCatalog('Shoes', 'Heels')">Heels</button>
+                <button class="navBtn" (click)="getCatalog('Shoes', 'Trainers')">Trainers</button>
+            </ng-template>
+        </li>
+        <li [ngbNavItem]="3">
+            <a ngbNavLink (click)="getCatalog('Accessories')">Accessories</a>
+            <ng-template ngbNavContent>
+                <button class="navBtn" (click)="getCatalog('Accessories')">All</button>
+                <button class="navBtn" (click)="getCatalog('Accessories', 'Bags')">Bags</button>
+                <button class="navBtn" (click)="getCatalog('Accessories', 'Purses')">Purses</button>
+                <button class="navBtn" (click)="getCatalog('Accessories', 'Belts')">Belts</button>
+                <button class="navBtn" (click)="getCatalog('Accessories', 'Gloves')">Gloves</button>
+                <button class="navBtn" (click)="getCatalog('Accessories', 'Hats')">Hats</button>
+                <button class="navBtn" (click)="getCatalog('Accessories', 'Scarfs')">Scarfs</button>
+                <button class="navBtn" *ngIf="category == 'Man'" (click)="getCatalog('Accessories', 'Ties')">Ties</button>
+            </ng-template>
+        </li>
+        <li ngbDropdown class="nav-item" class="ml-auto">
+            <a href (click)="false" class="nav-link" ngbDropdownToggle>Sort By</a>
+            <div ngbDropdownMenu>
+                <button ngbDropdownItem>Newest</button>
+                <button ngbDropdownItem>Oldest</button>
+                <button ngbDropdownItem>High Price</button>
+                <button ngbDropdownItem>Low Price</button>
+            </div>
+        </li>
+    </ul>
+    <div [ngbNavOutlet]="nav" class="mt-2"></div>
+
     <div class="album py-5 bg-light" style="padding: 2px 2px !important;">
         <div class="container">
             <div class="row">
                 <div class="col-md-2" *ngFor="let item of items; index as i">
                     <div class="mb-2 box-shadow">
-                        <!-- <img class="card-img-top" [src]="img" alt="Card image cap"> -->
                         <app-catalog-item [itemCatalogData]="item" (mainMenuChoice)="chooseFromMenu($event)"></app-catalog-item>
                     </div>
                 </div>

@@ -9,15 +9,24 @@ export class ApiService {
 
   constructor(private http:HttpClient) { }
 
-  sendQuery(query){
-    return this.http.post(environment.queryUrl, query);
+  sendQuery(query, cv){
+    const formData: FormData = new FormData();
+    formData.append('query', JSON.stringify(query));
+    formData.append('cv', cv, cv.name);
+    return this.http.post(environment.queryUrl, formData);
   }
 
-  getCatalog(category=null){
+  getCatalog(category=null, itemType=null, type=null){
     let httpParams = {};
     httpParams['page'] = '0';
     if (category != null) {
       httpParams['category'] = category;
+    }
+    if (itemType != null) {
+      httpParams['itemType'] = itemType;
+    }
+    if (type != null) {
+      httpParams['type'] = type;
     }
     return this.http.get(environment.catalogUrl, {params: httpParams});
   }

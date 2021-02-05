@@ -19,18 +19,20 @@ export class CatalogPageComponent implements OnInit {
   ngOnChanges(changes: any) {
     if (changes.category) {
       console.log(this.category);
-      this.api.getCatalog(this.category).subscribe(res => {
-        console.log(res);
-        for (let i = 0; i < 5; i++) {
-          this.items.push(res[i]);
-        }
-      })
+      this.getCatalog();
     }
+  }
+
+  getCatalog(itemType=null, type=null) {
+    this.api.getCatalog(this.category, itemType, type).subscribe(res => {
+      console.log(res);
+      this.items = res as [];
+    })
   }
 
   chooseFromMenu(choice):void
   {
-    console.log("preview");
+    console.log("page");
     this.mainMenuChoice.emit(choice);
   }
 

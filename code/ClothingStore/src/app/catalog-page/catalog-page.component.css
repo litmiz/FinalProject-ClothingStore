@@ -29,3 +29,47 @@ hr {
     border-radius: 8px;
     background-color: var(--darkPurpleColor);
 }
+
+ul {
+    text-align: center;
+    margin: 0 auto;
+    width: 50%;
+}
+
+ul a {
+    font-size: 20px;
+    font-family: var(--textFont);
+    color: var(--darkGreyBlueColor);
+    font-weight: bold;
+}
+
+ng-template {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.navBtn {
+    width: 150px;
+    height: 40px;
+    font-size: 15px;
+    margin: 15px 10px;
+    color: white;
+    font-weight: bolder;
+    border-radius: 5px;
+    background-color: var(--darkRedColor);
+    border: 3px solid var(--darkPurpleColor);
+}
+
+.navBtn:hover {
+    background-color: var(--darkPurpleColor);
+    border: 2px solid var(--darkRedColor);
+}
+
+.navBtn:focus{
+    background-color: var(--darkRedColor)!important;
+    border: 2px solid var(--darkPurpleColor)!important;
+}
+
+.container, .container-md, .container-sm {
+    max-width: 80%;
+}

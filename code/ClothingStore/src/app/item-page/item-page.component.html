@@ -5,7 +5,7 @@
     <gallery [items]="images" thumbPosition="left" [nav]="false"></gallery>
     <article id="detailsArticle">
       <p id="priceP">{{item["price"]}}<span class="currencySpan">$</span><span *ngIf="item['sale']" id="oldPriceP">{{item["oldPrice"]}}<span class="currencySpan">$</span></span></p>
-      <p id="colorP">Color: {{item['description']['Color']}}</p>
+      <p id="colorP">Color: {{item['description'] ? item['description']['Color'] : ''}}</p>
       <p id="sizeP">Size:</p>
       <div class="sizeBtn" *ngFor="let sz of item['size'] | keyvalue">
         <button (click)="sizeDesc = sz.value" [disabled]="!sz.value.inStock" class="sizeBtn" id="sizeBtn">{{sz.key}}</button>
