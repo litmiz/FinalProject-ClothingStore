@@ -13,6 +13,7 @@ export class ItemPageComponent implements OnInit {
   item = {};
   images: GalleryItem[];
   sizeDesc = {};
+  activeDesc = false;
   @Input() _id;
   active = '0';
   constructor(private api:ApiService) { }

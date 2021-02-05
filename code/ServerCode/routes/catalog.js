@@ -28,8 +28,8 @@ router.get("/getItem", (req, res) => {
 
 router.get("/filteredCatalog", (req, res) => {
     const currentPage = req.query.page;
-    let filter = {inStock: true};
-    let sort = {addDate: -1, _id: -1};
+    let filter = {};
+    let sort = {inStock: -1, addDate: -1, _id: -1};
     if (req.query.itemType) {
         filter["itemType"] = req.query.itemType;
     }
@@ -96,6 +96,7 @@ function sendCatalogItems(data, res, multBy) {
             sale: item.sale,
             oldPrice: item.oldPrice * multBy,
             description: item.description,
+            inStock: item.inStock,
         })
     });
     res.send(items);

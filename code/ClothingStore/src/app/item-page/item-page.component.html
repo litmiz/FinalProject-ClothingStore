@@ -3,23 +3,24 @@
     <hr>
     <p>Item code: {{item["_id"]}}</p>
     <gallery [items]="images" thumbPosition="left" [nav]="false"></gallery>
-    <article>
-      <p>{{item["price"]}} <span *ngIf="item['sale']">{{item["oldPrice"]}}</span></p>
-      <p>Color: {{item['description']['Color']}}</p>
-      <p>Size:</p>
-      <div *ngFor="let sz of item['size'] | keyvalue">
-        <button (click)="sizeDesc = sz.value" [disabled]="!sz.value.inStock">{{sz.key}}</button>
+    <article id="detailsArticle">
+      <p id="priceP">{{item["price"]}}<span class="currencySpan">$</span><span *ngIf="item['sale']" id="oldPriceP">{{item["oldPrice"]}}<span class="currencySpan">$</span></span></p>
+      <p id="colorP">Color: {{item['description']['Color']}}</p>
+      <p id="sizeP">Size:</p>
+      <div class="sizeBtn" *ngFor="let sz of item['size'] | keyvalue">
+        <button (click)="sizeDesc = sz.value" [disabled]="!sz.value.inStock" class="sizeBtn" id="sizeBtn">{{sz.key}}</button>
       </div>
-      <div *ngFor="let szDesc of sizeDesc | keyvalue">
-        <p *ngIf="szDesc.key != 'inStock'">{{szDesc.key}}: {{szDesc.value}}</p>
+      <div *ngFor="let szDesc of sizeDesc | keyvalue" class="sizeDetails">
+        <p *ngIf="szDesc.key != 'inStock'" class="sizeDetails">{{szDesc.key}}: {{szDesc.value}}</p>
       </div>
-      <p>Description:</p>
-      <div *ngFor="let desc of item['description'] | keyvalue">
-        <p *ngIf="desc.key != 'Color'">{{desc.key}}: {{desc.value}}</p>
+      <p id="descP">Description: <i [ngClass]="{'fas': true, 'fa-plus-square': !activeDesc, 'fa-minus-square': activeDesc}" (click)="activeDesc = !activeDesc"></i></p>
+      <div *ngFor="let desc of item['description'] | keyvalue" class="descDetails">
+        <p *ngIf="(desc.key != 'Color') && activeDesc" class="descDetails">{{desc.key}}: {{desc.value}}</p>
       </div>
     </article>
     <aside>
-      <i class="fas fa-heart"></i>
-      <button>Add to bag</button>
+      <i class="fas fa-heart" id="favI"></i>
+      <button [disabled]="!item['inStock']" type="submit" id="addBtn">Add to bag</button>
+      <p *ngIf="!item['inStock']" id="soldP">SOLD OUT</p>
     </aside>
 </section>
