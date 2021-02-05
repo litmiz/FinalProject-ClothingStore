@@ -16,7 +16,7 @@ export class ApiService {
     return this.http.post(environment.queryUrl, formData);
   }
 
-  getCatalog(category=null, itemType=null, type=null){
+  getCatalog(category=null, itemType=null, type=null, sortBy=null){
     let httpParams = {};
     httpParams['page'] = '0';
     if (category != null) {
@@ -27,6 +27,9 @@ export class ApiService {
     }
     if (type != null) {
       httpParams['type'] = type;
+    }
+    if (sortBy != null) {
+      httpParams['sortBy'] = sortBy;
     }
     return this.http.get(environment.catalogUrl, {params: httpParams});
   }

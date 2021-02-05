@@ -8,6 +8,8 @@ import { ApiService } from '../api.service';
 })
 export class CatalogPageComponent implements OnInit {
   @Input() category
+  itemType;
+  type;
   items = [];
   @Output() mainMenuChoice = new EventEmitter();
   constructor(private api: ApiService) { }
@@ -23,8 +25,12 @@ export class CatalogPageComponent implements OnInit {
     }
   }
 
-  getCatalog(itemType=null, type=null) {
-    this.api.getCatalog(this.category, itemType, type).subscribe(res => {
+  getCatalog(itemType=null, type=null, sortBy=null) {
+    if (!sortBy) {
+      this.itemType = itemType;
+      this.type = type;
+    }
+    this.api.getCatalog(this.category, this.itemType, this.type, sortBy).subscribe(res => {
       console.log(res);
       this.items = res as [];
     })

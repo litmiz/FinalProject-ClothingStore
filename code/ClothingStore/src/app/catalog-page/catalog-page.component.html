@@ -45,10 +45,10 @@
         <li ngbDropdown class="nav-item" class="ml-auto">
             <a href (click)="false" class="nav-link" ngbDropdownToggle>Sort By</a>
             <div ngbDropdownMenu>
-                <button ngbDropdownItem>Newest</button>
-                <button ngbDropdownItem>Oldest</button>
-                <button ngbDropdownItem>High Price</button>
-                <button ngbDropdownItem>Low Price</button>
+                <button ngbDropdownItem (click)="getCatalog(null, null, 'new')">Newest</button>
+                <button ngbDropdownItem (click)="getCatalog(null, null, 'old')">Oldest</button>
+                <button ngbDropdownItem (click)="getCatalog(null, null, 'highPrice')">High Price</button>
+                <button ngbDropdownItem (click)="getCatalog(null, null, 'lowPrice')">Low Price</button>
             </div>
         </li>
     </ul>
