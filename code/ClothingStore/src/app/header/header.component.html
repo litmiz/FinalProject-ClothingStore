@@ -1,7 +1,7 @@
 <header>
   <ul ngbNav [activeId]="1" class="nav-tabs justify-content-left" id="navBar">
     <li [ngbNavItem]="1" (click)="chooseFromMenu('home')">
-      <a ngbNavLink [class.active]="choice == '1'">HOME</a>
+      <a ngbNavLink [class.active]="router.url == '/'" [routerLink]="['/']">HOME</a>
       <ng-template ngbNavContent>
         <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
           master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro
@@ -10,7 +10,7 @@
       </ng-template>
     </li>
     <li [ngbNavItem]="2" (click)="chooseFromMenu('about-us')">
-      <a ngbNavLink [class.active]="choice == '2'">ABOUT US</a>
+      <a ngbNavLink [class.active]="router.url == '/about-us'" [routerLink]="['/about-us']">ABOUT US</a>
       <ng-template ngbNavContent>
         <p>Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko
           farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts
@@ -20,18 +20,18 @@
           stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
       </ng-template>
     </li>
-    <li ngbDropdown class="nav-item" [class.show]="choice == '4'">
+    <li ngbDropdown class="nav-item" [class.show]="router.url.startsWith('/catalog-page')">
       <a href (click)="false" class="nav-link" ngbDropdownToggle>CATALOG</a>
       <div ngbDropdownMenu>
-        <button ngbDropdownItem (click)="chooseFromMenu('catalog-page-Woman')">WOMAN</button>
-        <button ngbDropdownItem (click)="chooseFromMenu('catalog-page-Man')">MAN</button>
-        <button ngbDropdownItem (click)="chooseFromMenu('catalog-page-Kids')">KIDS</button>
+        <button ngbDropdownItem [routerLink]="['/catalog-page', 'Woman']">WOMAN</button>
+        <button ngbDropdownItem [routerLink]="['/catalog-page', 'Man']">MAN</button>
+        <button ngbDropdownItem [routerLink]="['/catalog-page', 'Kids']">KIDS</button>
         <!-- <div class="dropdown-divider"></div>
             <button ngbDropdownItem>Separated link</button> -->
       </div>
     </li>
     <li [ngbNavItem]="3" (click)="chooseFromMenu('contact-us')">
-      <a ngbNavLink [class.active]="choice == '3'">CONTACT US</a>
+      <a ngbNavLink [class.active]="router.url == '/contact-us'" [routerLink]="['/contact-us']">CONTACT US</a>
       <ng-template ngbNavContent>
         <p>Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko
           farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { ApiService } from '../api.service';
 import { GalleryItem, ImageItem } from 'ng-gallery';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -14,16 +15,13 @@ export class ItemPageComponent implements OnInit {
   images: GalleryItem[];
   sizeDesc = {};
   activeDesc = false;
-  @Input() _id;
+  _id;
   active = '0';
-  constructor(private api:ApiService) { }
+  constructor(private api:ApiService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-  }
-
-  
-  ngOnChanges(changes:any){
-    if(changes._id){
+    this.route.params.subscribe(params => {
+      this._id = params['_id'];
       this.api.getItem(this._id).subscribe(res => {
         this.item = res[0];
         this.images = [];
@@ -33,7 +31,6 @@ export class ItemPageComponent implements OnInit {
         }
         console.log(this.item);
       }); 
-    }
+    });
   }
-
 }

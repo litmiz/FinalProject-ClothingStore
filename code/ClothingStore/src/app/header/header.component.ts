@@ -1,4 +1,5 @@
 import { Component, OnInit,  Output, EventEmitter} from '@angular/core';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { Component, OnInit,  Output, EventEmitter} from '@angular/core';
 export class HeaderComponent implements OnInit {
   @Output() mainMenuChoice = new EventEmitter();
   choice = '1';
-  constructor() { }
+  constructor(public router: Router) { }
 
   chooseFromMenu(choice):void
   {

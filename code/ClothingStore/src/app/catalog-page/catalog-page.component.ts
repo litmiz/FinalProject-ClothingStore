@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { ApiService } from '../api.service';
 
 @Component({
@@ -7,23 +8,27 @@ import { ApiService } from '../api.service';
   styleUrls: ['./catalog-page.component.css']
 })
 export class CatalogPageComponent implements OnInit {
-  @Input() category
+  category
   itemType;
   type;
   items = [];
   @Output() mainMenuChoice = new EventEmitter();
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-
-  }
-
-  ngOnChanges(changes: any) {
-    if (changes.category) {
-      console.log(this.category);
+    this.route.params.subscribe(params => {
+      this.category = params['category'];
+      console.log('params', params);
       this.getCatalog();
-    }
+    });
   }
+
+  // ngOnChanges(changes: any) {
+  //   if (changes.category) {
+  //     console.log(this.category);
+  //     this.getCatalog();
+  //   }
+  // }
 
   getCatalog(itemType=null, type=null, sortBy=null) {
     if (!sortBy) {
