@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
 
   constructor(private auth: AuthService, private router: Router) { }
 
@@ -15,16 +15,16 @@ export class LoginComponent implements OnInit {
   userDetails: any = {}
   msg: string;
 
-  loginUser() {
+  registerUser() {
     if (this.userDetails.email && this.userDetails.password) {
-      this.auth.login(this.userDetails).subscribe(
+      this.auth.register(this.userDetails).subscribe(
         res => {
           localStorage.setItem('token', res.token);
           this.router.navigate([''])
         },
         err => {
           if (err) {
-            this.msg = 'LOGIN FAILED!'
+            this.msg = 'Register Failed!'
           }
         }
       )

@@ -1,8 +1,15 @@
 :root {
     --textFont: "Segoe UI", "Helvetica Neue";
+    --roundTextFont: 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     --darkPurpleColor: #8e435f;
+    --lightPurpleColor: #c36789;
+    --lightPinkColor: #f381ab;
+    --darkRedColor: #66263d;
+    --darkGreyBlueColor: #495057;
     --darkGreyColor: rgb(116, 116, 116);
+    --greyColor: rgb(202 197 197);
     --lightGreyColor: rgb(241, 240, 240);
+    --blackColor: #000000;
 }
 
 header {
@@ -65,6 +72,13 @@ header {
 #loginBtn button {
     font-weight: bold;
     color: var(--darkGreyColor);
+}
+
+#loginBtn i {
+    color: var(--darkRedColor);
+    font-size: 22px;
+    margin: 0px 10px;
+    cursor: pointer;
 }
 
 /* #loginBtn i {

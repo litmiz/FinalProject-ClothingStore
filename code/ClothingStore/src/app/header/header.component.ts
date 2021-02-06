@@ -1,5 +1,6 @@
 import { Component, OnInit,  Output, EventEmitter} from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 
 @Component({
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  constructor(public router: Router) { }
+  constructor(public router: Router, public auth:AuthService) { }
 
   ngOnInit(): void {
   }

@@ -107,7 +107,7 @@ router.post('/register', (req, res) => {
                 city: req.body.city,
                 country: req.body.country,
                 favoriteItems: req.body.favoriteItems,
-                permissionLevel: req.body.permissionLevel,
+                permissionLevel: 'client',
                 currency: req.body.currency,
             })
             newUser.save((err, registeredUser) => {
