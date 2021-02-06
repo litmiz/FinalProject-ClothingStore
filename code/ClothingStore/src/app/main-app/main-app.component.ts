@@ -7,7 +7,6 @@ import { NavigationEnd, Router, RouterEvent } from '@angular/router';
   styleUrls: ['./main-app.component.css']
 })
 export class MainAppComponent implements OnInit {
-  userChoice: string = "home";
   bgImage: string = "";
   constructor(private renderer: Renderer2, private router: Router) { }
 
@@ -30,9 +29,4 @@ export class MainAppComponent implements OnInit {
       }
     });
   }
-
-  chooseFromMenu(choice: string) {
-    this.userChoice = choice;
-  }
-
 }

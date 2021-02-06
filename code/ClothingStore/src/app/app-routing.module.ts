@@ -5,12 +5,14 @@ import { CatalogPageComponent } from './catalog-page/catalog-page.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { HomeComponent } from './home/home.component';
 import { ItemPageComponent } from './item-page/item-page.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'about-us', component: AboutUsComponent},
   {path: 'catalog-page/:category', component: CatalogPageComponent},
   {path: 'contact-us', component: ContactUsComponent},
+  {path: 'login', component: LoginComponent},
   {path: 'item-page/:_id', component: ItemPageComponent},
 ];
 

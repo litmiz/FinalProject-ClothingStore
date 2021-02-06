@@ -12,7 +12,6 @@ export class CatalogPageComponent implements OnInit {
   itemType;
   type;
   items = [];
-  @Output() mainMenuChoice = new EventEmitter();
   constructor(private api: ApiService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -23,13 +22,6 @@ export class CatalogPageComponent implements OnInit {
     });
   }
 
-  // ngOnChanges(changes: any) {
-  //   if (changes.category) {
-  //     console.log(this.category);
-  //     this.getCatalog();
-  //   }
-  // }
-
   getCatalog(itemType=null, type=null, sortBy=null) {
     if (!sortBy) {
       this.itemType = itemType;
@@ -39,12 +31,6 @@ export class CatalogPageComponent implements OnInit {
       console.log(res);
       this.items = res as [];
     })
-  }
-
-  chooseFromMenu(choice):void
-  {
-    console.log("page");
-    this.mainMenuChoice.emit(choice);
   }
 
 }

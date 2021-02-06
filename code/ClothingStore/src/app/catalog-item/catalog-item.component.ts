@@ -8,7 +8,6 @@ import { environment } from 'src/environments/environment';
 })
 export class CatalogItemComponent implements OnInit {
   @Input() itemCatalogData;
-  @Output() mainMenuChoice = new EventEmitter();
   _id;
   img;
   price;
@@ -29,12 +28,5 @@ export class CatalogItemComponent implements OnInit {
         this.oldPrice = ``;
       }
     }
-  }
-
-  chooseFromMenu(choice):void
-  {
-    console.log("item");
-    console.log(this._id);
-    this.mainMenuChoice.emit(choice);
   }
 }

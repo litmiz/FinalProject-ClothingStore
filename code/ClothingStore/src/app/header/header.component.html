@@ -1,24 +1,10 @@
 <header>
   <ul ngbNav [activeId]="1" class="nav-tabs justify-content-left" id="navBar">
-    <li [ngbNavItem]="1" (click)="chooseFromMenu('home')">
+    <li [ngbNavItem]="1">
       <a ngbNavLink [class.active]="router.url == '/'" [routerLink]="['/']">HOME</a>
-      <ng-template ngbNavContent>
-        <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
-          master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro
-          keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat
-          salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
-      </ng-template>
     </li>
-    <li [ngbNavItem]="2" (click)="chooseFromMenu('about-us')">
+    <li [ngbNavItem]="2">
       <a ngbNavLink [class.active]="router.url == '/about-us'" [routerLink]="['/about-us']">ABOUT US</a>
-      <ng-template ngbNavContent>
-        <p>Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko
-          farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts
-          ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar
-          helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson
-          8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester
-          stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
-      </ng-template>
     </li>
     <li ngbDropdown class="nav-item" [class.show]="router.url.startsWith('/catalog-page')">
       <a href (click)="false" class="nav-link" ngbDropdownToggle>CATALOG</a>
@@ -26,42 +12,16 @@
         <button ngbDropdownItem [routerLink]="['/catalog-page', 'Woman']">WOMAN</button>
         <button ngbDropdownItem [routerLink]="['/catalog-page', 'Man']">MAN</button>
         <button ngbDropdownItem [routerLink]="['/catalog-page', 'Kids']">KIDS</button>
-        <!-- <div class="dropdown-divider"></div>
-            <button ngbDropdownItem>Separated link</button> -->
       </div>
     </li>
-    <li [ngbNavItem]="3" (click)="chooseFromMenu('contact-us')">
+    <li [ngbNavItem]="3">
       <a ngbNavLink [class.active]="router.url == '/contact-us'" [routerLink]="['/contact-us']">CONTACT US</a>
-      <ng-template ngbNavContent>
-        <p>Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko
-          farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts
-          ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar
-          helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson
-          8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester
-          stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
-      </ng-template>
     </li>
-    <!-- <li ngbNavItem [disabled]="true" class="ml-auto">
-          <a ngbNavLink>Disabled</a>
-          <ng-template ngbNavContent>
-            <p>Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id diam. Nulla facilisi.
-              Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis, luctus eget tincidunt eu, congue et odio.
-              Duis pharetra et nisl at faucibus. Quisque luctus pulvinar arcu, et molestie lectus ultrices et. Sed diam urna,
-              egestas ut ipsum vel, volutpat volutpat neque. Praesent fringilla tortor arcu. Vivamus faucibus nisl enim, nec
-              tristique ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci varius natoque penatibus et
-              magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac lorem aliquet ultricies in eget
-              neque. Phasellus nec tortor vel tellus pulvinar feugiat.</p>
-          </ng-template>
-        </li> -->
   </ul>
-  <!-- <div [ngbNavOutlet]="nav" class="mt-2"></div> -->
-
   <div id="logoDiv">
     <img id="logo" src="../../assets/NewLOGOHeader.png" alt="LOGO" class="justify-content-center">
   </div>
-
-  <!-- <a id="loginBtn" class="justify-content-right" href="#"><i class="fas fa-user"></i></a> -->
   <div id="loginBtn" >
-    <button type="button" class="btn btn-light" (click)="chooseFromMenu('login')">LOGIN</button>
+    <button type="button" class="btn btn-light" [routerLink]="['/login']">LOGIN</button>
   </div>
 </header>
