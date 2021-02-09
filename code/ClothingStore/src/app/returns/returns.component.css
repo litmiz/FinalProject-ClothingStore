@@ -29,6 +29,10 @@ hr {
     background-color: var(--darkPurpleColor);
 }
 
+h3 {
+    margin-top: 10px;
+}
+
 .casualHr {
     width: 150px;
 }

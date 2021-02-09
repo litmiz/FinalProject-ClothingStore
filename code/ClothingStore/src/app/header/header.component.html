@@ -23,12 +23,12 @@
   </div>
   <div id="loginBtn">
     <button type="button" class="btn btn-light" [routerLink]="['/login']" *ngIf="!auth.loggedIn()">LOGIN</button>
-    <i class="fas fa-user-lock" *ngIf="auth.loggedIn()" [routerLink]="['/manage-users']"></i>
-    <i class="fas fa-box-open" *ngIf="auth.loggedIn()" [routerLink]="['/manage-orders']"></i>
-    <i class="fas fa-folder-plus" *ngIf="auth.loggedIn()" [routerLink]="['/add-items']"></i>
-    <i class="fas fa-heart" *ngIf="auth.loggedIn()" [routerLink]="['/favorites']"></i>
-    <i class="fas fa-shopping-cart" *ngIf="auth.loggedIn()" [routerLink]="['/cart']"></i>
-    <i class="fas fa-user" *ngIf="auth.loggedIn()" [routerLink]="['/user-details']"></i>
+    <i class="fas fa-user-lock" *ngIf="auth.loggedIn()" [routerLink]="['/manage-users']" placement="bottom" ngbTooltip="User Management"></i>
+    <i class="fas fa-box-open" *ngIf="auth.loggedIn()" [routerLink]="['/manage-orders']" placement="bottom" ngbTooltip="Order Management"></i>
+    <i class="fas fa-folder-plus" *ngIf="auth.loggedIn()" [routerLink]="['/add-items']" placement="bottom" ngbTooltip="Item Management"></i>
+    <i class="fas fa-heart" *ngIf="auth.loggedIn()" [routerLink]="['/favorites']" placement="bottom" ngbTooltip="My Favorites"></i>
+    <i class="fas fa-shopping-cart" *ngIf="auth.loggedIn()" [routerLink]="['/cart']" placement="bottom" ngbTooltip="Shopping Bag"></i>
+    <i class="fas fa-user" *ngIf="auth.loggedIn()" [routerLink]="['/user-details']" placement="bottom" ngbTooltip="My Details"></i>
     <select class="form-select" *ngIf="auth.loggedIn()">
       <option selected value="USD">USD $</option>
       <option value="ILS">ILS ₪</option>

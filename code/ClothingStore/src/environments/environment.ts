@@ -5,4 +5,5 @@ export const environment = {
   catalogUrl:'http://localhost:3000/catalog/filteredCatalog',
   itemUrl: 'http://localhost:3000/catalog/getItem',
   usersUrl: 'http://localhost:3000/users',
+  ordersUrl: 'http://localhost:3000/orders',
 };

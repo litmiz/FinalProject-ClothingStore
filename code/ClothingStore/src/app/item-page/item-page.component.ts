@@ -1,9 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { ApiService } from '../api.service';
 import { GalleryItem, ImageItem } from 'ng-gallery';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth.service';
+import { debounceTime } from 'rxjs/operators';
+import { NgbAlert } from '@ng-bootstrap/ng-bootstrap';
+import { Subject } from 'rxjs';
 
 
 @Component({
@@ -12,13 +15,19 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./item-page.component.css']
 })
 export class ItemPageComponent implements OnInit {
+  private _success = new Subject<string>();
   item = {};
   images: GalleryItem[];
   sizeDesc = {};
   activeDesc = false;
   _id;
   active = '0';
-  constructor(private api:ApiService, private route: ActivatedRoute, public auth:AuthService) { }
+  selectedSize;
+  successMessage = '';
+
+  @ViewChild('selfClosingAlert', { static: false }) selfClosingAlert: NgbAlert;
+
+  constructor(private api: ApiService, private route: ActivatedRoute, public auth: AuthService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -31,7 +40,26 @@ export class ItemPageComponent implements OnInit {
           this.images.push(new ImageItem({ src: `${environment.serverUrl}/${img}`, thumb: `${environment.serverUrl}/${img}` }));
         }
         console.log(this.item);
-      }); 
+      });
+    });
+
+    this._success.subscribe(message => this.successMessage = message);
+    this._success.pipe(debounceTime(5000)).subscribe(() => {
+      if (this.selfClosingAlert) {
+        this.selfClosingAlert.close();
+      }
+    });
+  }
+
+  selectSize(sz) {
+    this.sizeDesc = sz.value;
+    this.selectedSize = sz.key;
+  }
+
+  addItemToBag() {
+    this.api.addToShoppingBag(this._id, this.selectedSize).subscribe(res => {
+      console.log(res);
+      this._success.next("This item was added to your bag successfully!");
     });
   }
 }

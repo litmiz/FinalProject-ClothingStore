@@ -4,7 +4,7 @@ const {stringify} = require("querystring");
 const orderSchema = mongoose.Schema(
     {
         userId:String,
-        items:[String],
+        items:[],
         status:String,
         amountToPay:Number,
         country:String,

@@ -46,4 +46,24 @@ export class ApiService {
   updateUserDetails(user: User){
     return this.http.put<User>(`${environment.usersUrl}/editMyInfo`, user);
   }
+
+  getShoppingBag(){
+    return this.http.get(`${environment.ordersUrl}/shoppingBag`);
+  }
+
+  removeFromShoppingBag(_id, size){
+    let item = new Object();
+    item[_id] = size; 
+    let httpParams = {item: item, add: false};
+    console.log(httpParams);
+    return this.http.put(`${environment.ordersUrl}/addToShoppingBag`, httpParams);
+  }
+
+  addToShoppingBag(_id, size){
+    let item = new Object();
+    item[_id] = size; 
+    let httpParams = {item: item, add: true};
+    console.log(httpParams);
+    return this.http.put(`${environment.ordersUrl}/addToShoppingBag`, httpParams);
+  }
 }

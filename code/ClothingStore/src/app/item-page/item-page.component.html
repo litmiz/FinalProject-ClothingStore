@@ -8,7 +8,7 @@
       <p id="colorP">Color: {{item['description'] ? item['description']['Color'] : ''}}</p>
       <p id="sizeP">Size:</p>
       <div class="sizeBtn" *ngFor="let sz of item['size'] | keyvalue">
-        <button (click)="sizeDesc = sz.value" [disabled]="!sz.value.inStock" class="sizeBtn" id="sizeBtn">{{sz.key}}</button>
+        <button (click)="selectSize(sz)" [disabled]="!sz.value.inStock" class="sizeBtn" id="sizeBtn">{{sz.key}}</button>
       </div>
       <div *ngFor="let szDesc of sizeDesc | keyvalue" class="sizeDetails">
         <p *ngIf="szDesc.key != 'inStock'" class="sizeDetails">{{szDesc.key}}: {{szDesc.value}}</p>
@@ -20,7 +20,8 @@
     </article>
     <aside *ngIf="auth.loggedIn()">
       <i class="fas fa-heart" id="favI"></i>
-      <button [disabled]="!item['inStock']" type="submit" id="addBtn">Add to bag</button>
+      <button [disabled]="!item['inStock'] || !selectedSize" type="submit" id="addBtn" (click)="addItemToBag()">Add to bag</button>
       <p *ngIf="!item['inStock']" id="soldP">SOLD OUT</p>
+      <ngb-alert #selfClosingAlert *ngIf="successMessage" type="success" (closed)="successMessage = ''">{{ successMessage }}</ngb-alert>
     </aside>
 </section>

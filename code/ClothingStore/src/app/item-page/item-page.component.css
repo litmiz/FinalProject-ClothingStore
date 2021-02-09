@@ -135,6 +135,13 @@ aside {
     border: 2px solid var(--darkPurpleColor)!important;
 }
 
+ngb-alert {
+    font-weight: bolder;
+    margin-bottom: 100px !important;
+    background-color: var(--lightPinkColor);
+    color: var(--blackColor);
+}
+
 #soldP {
     font-weight: bolder;
     display: inline;

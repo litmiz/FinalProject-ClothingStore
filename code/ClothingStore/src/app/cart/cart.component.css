@@ -31,3 +31,59 @@ hr {
     border-radius: 8px;
     background-color: var(--darkPurpleColor);
 }
+
+#itemsCards {
+    display: inline-block;
+}
+
+.card {
+    display: inline-block;
+    margin: 20px 20px;
+    cursor: pointer;
+}
+
+.card-text {
+    margin: 10px 10px;
+    display: inline-block;
+    font-size: 18px;
+}
+
+.card-body i {
+    color: var(--darkPurpleColor);
+    margin: 0px 10px;
+}
+
+.emptyBagMsg {
+    font-size: 25px;
+    font-family: var(--textFont);
+}
+
+.emptyBagMsg a {
+    color: var(--lightPurpleColor);
+}
+
+#totalP {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+button {
+    font-size: 22px;
+    color: white;
+    width: 140px;
+    height: 40px;
+    background-color: var(--darkRedColor);
+    border: 3px solid var(--darkPurpleColor);
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: var(--darkPurpleColor);
+    border: 3px solid var(--darkRedColor);
+}
+
+button:focus{
+    background-color: var(--darkRedColor)!important;
+    border: 3px solid var(--darkPurpleColor)!important;
+}

@@ -1,4 +1,22 @@
 <section>
     <h2>MY CART</h2>
     <hr>
+    <div *ngFor="let item of items" id="itemsCards">
+        <div class="card" style="width: 16.5rem;" [routerLink]="['/item-page', item._id]">
+            <img class="card-img-top" [src]="item.image">
+            <div class="card-body">
+              <p class="card-text">Price: {{item.price}}<span>$</span></p>
+              <p class="card-text">Size: {{item.size}}</p>
+              <i class="fas fa-trash-alt" (click)="deleteItem(item); $event.stopPropagation()"></i>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="items.length == 0">
+        <p class="emptyBagMsg">Shopping bag is empty</p>
+        <p class="emptyBagMsg"><a href="#">Click here</a> to view our latest items</p>
+    </div>
+    <div *ngIf="items.length > 0">
+        <p id="totalP">Total Amount: {{shoppingBag["amountToPay"]}}<span>$</span></p>
+        <button type="submit" id="checkBtn">Checkout</button>
+    </div>
 </section>
