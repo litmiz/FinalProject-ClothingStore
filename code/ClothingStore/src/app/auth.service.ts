@@ -12,11 +12,11 @@ export class AuthService {
   constructor(private http:HttpClient, private router:Router) { }
 
   login(user:User) :any {
-    return this.http.post<User>(`${environment.serverUrl}/users/login`, user);
+    return this.http.post<User>(`${environment.usersUrl}/login`, user);
   }
 
   register(user:User) : any {
-    return this.http.post<User>(`${environment.serverUrl}/users/register`, user);
+    return this.http.post<User>(`${environment.usersUrl}/register`, user);
   }
 
   logoutUser(){

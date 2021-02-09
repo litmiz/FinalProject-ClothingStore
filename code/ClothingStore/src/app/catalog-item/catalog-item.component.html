@@ -1,6 +1,6 @@
 <div class="card" style="width: 70%">
     <img class="card-img-top" [src]="img">
     <div class="card-body">
-      <p class="card-text">{{price}} <span>{{oldPrice}}</span><i class="fas fa-cart-plus"></i></p>
+      <p class="card-text">{{price}} <span>{{oldPrice}}</span><i class="fas fa-cart-plus" *ngIf="auth.loggedIn()"></i></p>
     </div>
 </div>

@@ -30,8 +30,8 @@
     <i class="fas fa-shopping-cart" *ngIf="auth.loggedIn()" [routerLink]="['/cart']"></i>
     <i class="fas fa-user" *ngIf="auth.loggedIn()" [routerLink]="['/user-details']"></i>
     <select class="form-select" *ngIf="auth.loggedIn()">
-      <option selected value="0">USD $</option>
-      <option value="1">ILS ₪</option>
+      <option selected value="USD">USD $</option>
+      <option value="ILS">ILS ₪</option>
     </select>
     <button type="button" class="btn btn-light" *ngIf="auth.loggedIn()" (click)="auth.logoutUser()">LOGOUT</button>
   </div>

@@ -16,3 +16,11 @@ exports.verifyToken = function(req, res, next) {
     console.log(payload);
     next();
 }
+
+// This function doesn't check for errors, it assumes that verifyToken function was called already.
+exports.getPayload = function(req) {
+    let token = req.headers.authorization.split(' ')[1];
+    let payload = jwt.verify(token, 'secretKey');
+
+    return payload;
+}

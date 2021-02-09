@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
+import { User } from './user';
 
 @Injectable({
   providedIn: 'root'
@@ -36,5 +37,13 @@ export class ApiService {
 
   getItem(id){
     return this.http.get(environment.itemUrl, {params: new HttpParams().set('_id', id)});
+  }
+
+  getUserDetails(){
+    return this.http.get<User>(`${environment.usersUrl}/myPersonalInfo`);
+  }
+
+  updateUserDetails(user: User){
+    return this.http.put<User>(`${environment.usersUrl}/editMyInfo`, user);
   }
 }

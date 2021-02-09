@@ -1,18 +1,21 @@
+require('dotenv').config();
 require("../data/database");
 const express = require("express");
 const router = express.Router();
 const userModel = require("../models/users");
 const bcrypyt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const salt = 10;
+const salt = parseInt(process.env.SALT);
 const verify = require('../modules/verifyToken');
 
-router.get("/myPersonalInfo", (req, res) => {
-    userModel.findOne({email:req.query.email}, (error, data) => {
+router.get("/myPersonalInfo", verify.verifyToken, (req, res) => {
+    let payload = verify.getPayload(req);
+    userModel.findById(payload._id, (error, data) => {
         if (error) {
             console.error("There is an error with the get request.");
         }
         else {
+            console.log(data);
             res.send({
                 fullName: data.fullName,
                 email: data.email,
@@ -82,7 +85,7 @@ router.post('/login', (req, res) => {
         } else {
             bcrypyt.compare(req.body.password, user.password, (err, result) => {
                 if (result) {
-                    let payload = {subject: user._id};
+                    let payload = {_id: user._id, permission: user.permissionLevel};
                     let token = jwt.sign(payload, 'secretKey');
                     res.status(200).send({token});
                 } else {
@@ -96,6 +99,7 @@ router.post('/login', (req, res) => {
 
 router.post('/register', (req, res) => {
     let userData = req.body;
+    console.log(`register: ${JSON.stringify(userData)}`);
     if (userData.email && userData.password) {
         bcrypyt.hash(req.body.password, salt, (err, hash) => {
             const newUser = new userModel({
@@ -114,7 +118,8 @@ router.post('/register', (req, res) => {
                 if (err) {
                     console.error(err)
                 } else {
-                    let payload = {subject: registeredUser._id};
+                    console.log(`register: ${JSON.stringify(registeredUser)}`);
+                    let payload = {_id: registeredUser._id, permission: registeredUser.permissionLevel};
                     let token = jwt.sign(payload, 'secretKey');
                     res.status(200).send({token});
                 }
@@ -123,14 +128,15 @@ router.post('/register', (req, res) => {
     }
 });
 
-router.put('/editMyInfo', (req, res) => {
-    const query = {_id: req.body._id};
-    userModel.findOneAndUpdate(query, {$set: {fullName: req.body.fullName, email: req.body.email, phoneNumber: req.body.phoneNumber, address: req.body.address, city: req.body.address, country: req.body.country, favoriteItems: req.body.favoriteItems,}}, (error, data) => {
+router.put('/editMyInfo', verify.verifyToken, (req, res) => {
+    let payload = verify.getPayload(req);
+    const query = {_id: payload._id};
+    userModel.findOneAndUpdate(query, {$set: {fullName: req.body.fullName, email: req.body.email, phoneNumber: req.body.phoneNumber, address: req.body.address, city: req.body.city, country: req.body.country}}, (error, data) => {
         if (error) {
             console.error("The is an error with the put request.");
         }
         else {
-            res.send(data);
+            res.send(true);
         }
     });
 });

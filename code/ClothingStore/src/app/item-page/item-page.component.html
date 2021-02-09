@@ -18,7 +18,7 @@
         <p *ngIf="(desc.key != 'Color') && activeDesc" class="descDetails">{{desc.key}}: {{desc.value}}</p>
       </div>
     </article>
-    <aside>
+    <aside *ngIf="auth.loggedIn()">
       <i class="fas fa-heart" id="favI"></i>
       <button [disabled]="!item['inStock']" type="submit" id="addBtn">Add to bag</button>
       <p *ngIf="!item['inStock']" id="soldP">SOLD OUT</p>

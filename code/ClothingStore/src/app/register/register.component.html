@@ -12,13 +12,19 @@
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" class="form-control input_user" [(ngModel)]="userDetails.email" name="email" placeholder="email">
+                        <input type="text" class="form-control input_user" [(ngModel)]="userDetails.fullName" name="fullName" placeholder="Full Name">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                        </div>
+                        <input type="text" class="form-control input_user" [(ngModel)]="userDetails.email" name="email" placeholder="Email">
                     </div>
                     <div class="input-group mb-2">
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-key"></i></span>
                         </div>
-                        <input type="password" class="form-control input_pass" [(ngModel)]="userDetails.password" name="password" placeholder="password">
+                        <input type="password" class="form-control input_pass" [(ngModel)]="userDetails.password" name="password" placeholder="Password">
                     </div>
                         <div class="d-flex justify-content-center mt-3 login_container">
                  <button type="button" name="button" class="btn login_btn" (click)="registerUser()">Register</button>

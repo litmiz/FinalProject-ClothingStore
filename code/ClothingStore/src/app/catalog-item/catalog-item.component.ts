@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-catalog-item',
@@ -13,7 +14,7 @@ export class CatalogItemComponent implements OnInit {
   price;
   oldPrice;
 
-  constructor() { }
+  constructor(public auth:AuthService) { }
   ngOnInit(): void {
   }
 

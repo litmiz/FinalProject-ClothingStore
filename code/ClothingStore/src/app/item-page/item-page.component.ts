@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { ApiService } from '../api.service';
 import { GalleryItem, ImageItem } from 'ng-gallery';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class ItemPageComponent implements OnInit {
   activeDesc = false;
   _id;
   active = '0';
-  constructor(private api:ApiService, private route: ActivatedRoute) { }
+  constructor(private api:ApiService, private route: ActivatedRoute, public auth:AuthService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {

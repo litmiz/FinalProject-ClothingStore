@@ -1,1 +1,19 @@
-<p>user-details works!</p>
+<section>
+    <aside id="infoAside">
+        <h2>MY PROFILE</h2>
+        <hr>
+        <form [formGroup]="updateDetailsForm" (submit)="updateDetails()">
+            <p>Full Name: <input type="text" formControlName="fullName" name="fullName" id="fullName" placeholder="Enter your Name" required></p>
+            <p>Email: <input type="text" formControlName="email" name="email" id="email" placeholder="Enter your email" required></p>
+            <p>Phone Number: <input type="text" formControlName="phoneNumber" name="phoneNumber" id="phoneNumber" placeholder="Enter your phone Number"></p>
+            <p>Country: <input type="text" formControlName="country" name="country" id="country" placeholder="Enter your country"></p>
+            <p>City: <input type="text" formControlName="city" name="city" id="city" placeholder="Enter your city"></p>
+            <p>Address: <input type="text" formControlName="address" name="address" id="address" placeholder="Enter your address"></p>
+            <button type="submit" [disabled]="updateDetailsForm.invalid">Update my details</button>
+        </form>
+    </aside>
+    <aside id="ordersAside">
+        <h3>My Orders</h3>
+        <hr class="casualHr">
+    </aside>
+</section>

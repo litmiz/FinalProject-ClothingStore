@@ -1,0 +1,33 @@
+:root {
+    --textFont: "Segoe UI", "Helvetica Neue";
+    --roundTextFont: 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    --darkPurpleColor: #8e435f;
+    --lightPurpleColor: #c36789;
+    --lightPinkColor: #f381ab;
+    --darkRedColor: #66263d;
+    --darkGreyBlueColor: #495057;
+    --darkGreyColor: rgb(116, 116, 116);
+    --lightGreyColor: rgb(241, 240, 240);
+    --blackColor: #000000;
+}
+
+section {
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+h2 {
+    font-family: var(--roundTextFont);
+    color: var(--darkGreyBlueColor);
+    font-weight: bold;
+}
+
+hr {
+    margin: 0 auto;
+    margin-bottom: 15px;
+    width: 350px;
+    height: 4px;
+    border-radius: 8px;
+    background-color: var(--darkPurpleColor);
+}
