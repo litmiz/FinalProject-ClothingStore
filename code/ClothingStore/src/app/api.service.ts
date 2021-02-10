@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
+import { Order } from './order';
 import { User } from './user';
 
 @Injectable({
@@ -65,5 +66,9 @@ export class ApiService {
     let httpParams = {item: item, add: true};
     console.log(httpParams);
     return this.http.put(`${environment.ordersUrl}/addToShoppingBag`, httpParams);
+  }
+
+  editMyOrder(order: Order){
+    return this.http.put<Order>(`${environment.ordersUrl}/editMyOrder`, order);
   }
 }

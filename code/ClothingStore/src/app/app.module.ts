@@ -33,6 +33,8 @@ import { FavoritesComponent } from './favorites/favorites.component';
 import { AddItemsComponent } from './add-items/add-items.component';
 import { ManageOrdersComponent } from './manage-orders/manage-orders.component';
 import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { MyOrdersComponent } from './my-orders/my-orders.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,9 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
     FavoritesComponent,
     AddItemsComponent,
     ManageOrdersComponent,
-    ManageUsersComponent
+    ManageUsersComponent,
+    CheckoutComponent,
+    MyOrdersComponent
   ],
   imports: [
     BrowserModule,

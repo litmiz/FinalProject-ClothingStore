@@ -4,7 +4,7 @@
     <p>Item code: {{item["_id"]}}</p>
     <gallery [items]="images" thumbPosition="left" [nav]="false"></gallery>
     <article id="detailsArticle">
-      <p id="priceP">{{item["price"]}}<span class="currencySpan">$</span><span *ngIf="item['sale']" id="oldPriceP">{{item["oldPrice"]}}<span class="currencySpan">$</span></span></p>
+      <p id="priceP"><span class="currencySpan">$</span>{{item["price"]}}<span *ngIf="item['sale']" id="oldPriceP"><span class="currencySpan">$</span>{{item["oldPrice"]}}</span></p>
       <p id="colorP">Color: {{item['description'] ? item['description']['Color'] : ''}}</p>
       <p id="sizeP">Size:</p>
       <div class="sizeBtn" *ngFor="let sz of item['size'] | keyvalue">
@@ -19,8 +19,10 @@
       </div>
     </article>
     <aside *ngIf="auth.loggedIn()">
-      <i class="fas fa-heart" id="favI"></i>
-      <button [disabled]="!item['inStock'] || !selectedSize" type="submit" id="addBtn" (click)="addItemToBag()">Add to bag</button>
+      <!-- <i class="fas fa-heart" id="favI"></i> -->
+      <div  placement="bottom" ngbTooltip="Select size to add" id="buttonDiv" [disableTooltip]="selectedSize">
+        <button [disabled]="!item['inStock'] || !selectedSize" type="submit" id="addBtn" (click)="addItemToBag()">Add to bag</button>
+      </div>
       <p *ngIf="!item['inStock']" id="soldP">SOLD OUT</p>
       <ngb-alert #selfClosingAlert *ngIf="successMessage" type="success" (closed)="successMessage = ''">{{ successMessage }}</ngb-alert>
     </aside>

@@ -5,7 +5,7 @@
         <div class="card" style="width: 16.5rem;" [routerLink]="['/item-page', item._id]">
             <img class="card-img-top" [src]="item.image">
             <div class="card-body">
-              <p class="card-text">Price: {{item.price}}<span>$</span></p>
+              <p class="card-text"><span>$</span>{{item.price}}</p>
               <p class="card-text">Size: {{item.size}}</p>
               <i class="fas fa-trash-alt" (click)="deleteItem(item); $event.stopPropagation()"></i>
             </div>
@@ -16,7 +16,9 @@
         <p class="emptyBagMsg"><a href="#">Click here</a> to view our latest items</p>
     </div>
     <div *ngIf="items.length > 0">
-        <p id="totalP">Total Amount: {{shoppingBag["amountToPay"]}}<span>$</span></p>
-        <button type="submit" id="checkBtn">Checkout</button>
+        <p id="totalP">Total Amount: <span>$</span>{{shoppingBag["amountToPay"]}}</p>
+        <button type="submit" id="checkBtn" *ngIf="!checkout" (click)="checkout = !checkout">Checkout</button>
     </div>
+
+    <app-checkout *ngIf="checkout" [orderId]="shoppingBag['_id']"></app-checkout>
 </section>

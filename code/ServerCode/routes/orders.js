@@ -55,7 +55,7 @@ router.get("/shoppingBag", verify.verifyToken, (req, res) => {
         if (error) {
             console.error("There is an error with the get request.");
         }
-        else {
+        else if (data) {
             if (req.query.currency == "ILS") {
                 currencyAPI.getCurrency(req.query.currency).then(multBy => {
                     sendShoppingBag(data, res, multBy);
@@ -63,7 +63,10 @@ router.get("/shoppingBag", verify.verifyToken, (req, res) => {
             } else {
                 sendShoppingBag(data, res, 1);
             }
-        };
+        }
+        else {
+            res.send(false);
+        }
     })
 });
 
@@ -85,9 +88,9 @@ function sendShoppingBag(order, res, multBy) {
             amountToPay += (e.price * multBy);
             images.push(e.images[0]);
             prices.push(e.price * multBy);
-
         });
         let orderOut = {
+            _id: order._id,
             items: order.items,
             status: order.status,
             amountToPay: amountToPay,
@@ -185,16 +188,21 @@ router.put("/addToShoppingBag", verify.verifyToken, (req, res) => {
     });
 });
 
-router.put('/editMyOrder', (req, res) => {
+router.put('/editMyOrder', verify.verifyToken, (req, res) => {
+    const payload = verify.getPayload(req);
+    const userId = payload._id;
     const query = { _id: req.body._id };
     orderModel.findOne(query, (error, foundOrder) => {
         if (error) {
             console.error("There is an error with the put request.");
         }
-        else if (foundOrder.userId == req.body.userId) {
+        else if (foundOrder.userId == userId) {
             orderModel.findOneAndUpdate(query, {
                 $set: {
                     status: req.body.status,
+                    country: req.body.country,
+                    city: req.body.city,
+                    address: req.body.address,
                 }
             }, (error, data) => {
                 if (error) {
@@ -203,28 +211,35 @@ router.put('/editMyOrder', (req, res) => {
                 else {
                     res.send(true);
                     if (req.body.status == 'ordered') {
-                        userModel.findOne({ _id: req.body.userId }, (error, user) => {
+                        userModel.findOne({ _id: userId }, (error, user) => {
                             if (error) {
-                                console.error(`The is an error finding the user ${req.body.userId}.`);
+                                console.error(`The is an error finding the user ${userId}.`);
                             } else {
                                 nodeMailer.sendMail(user.email, "Order Confirmation",
                                     `Dear ${user.fullName}, your order ${foundOrder._id} has been received. The order will be delivered to you soon.`)
                             }
                         });
-                        catalogModel.find().where('_id').in(foundOrder.items).exec((err, records) => {
-                            let amountSum = 0;
-                            records.forEach(item => {
-                                amountSum += item.price;
+                        items = [];
+                        foundOrder.items.forEach(e => {
+                            items.push(Object.keys(e)[0]);
+                        });
+                        catalogModel.find().where('_id').in(items).exec((err, records) => {
+                            let amountToPay = 0;
+                            let objects = {};
+                            records.forEach(o => objects[o._id] = o);
+                            let dupItems = items.map(id => objects[id]);
+                            dupItems.forEach(e => {
+                                amountToPay += (e.price);
                             });
-                            foundOrder.amountToPay = amountSum;
+                            foundOrder.amountToPay = amountToPay;
                             foundOrder.save().then(() => {
                                 res.send(true);
                             });
                         });
                     } else if (req.body.status == 'cancelRequest') {
-                        userModel.findOne({ _id: req.body.userId }, (error, user) => {
+                        userModel.findOne({ _id: userId }, (error, user) => {
                             if (error) {
-                                console.error(`The is an error finding the user ${req.body.userId}.`);
+                                console.error(`The is an error finding the user ${userId}.`);
                             } else {
                                 nodeMailer.sendMail(user.email, "Order Cancellation Request",
                                     `Dear ${user.fullName}, your order ${foundOrder._id} has been request to be cancelled. We will send you a cancel confirmation soon.`)

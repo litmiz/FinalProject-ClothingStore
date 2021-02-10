@@ -1,0 +1,10 @@
+<section>
+    <aside id="infoAside">
+        <form [formGroup]="checkoutForm" (submit)="pay()">
+            <p>Country: <input type="text" formControlName="country" name="country" id="country" placeholder="Enter your country"></p>
+            <p>City: <input type="text" formControlName="city" name="city" id="city" placeholder="Enter your city"></p>
+            <p>Address: <input type="text" formControlName="address" name="address" id="address" placeholder="Enter your address"></p>
+            <button type="submit" [disabled]="checkoutForm.invalid">Pay</button>
+        </form>
+    </aside>
+</section>

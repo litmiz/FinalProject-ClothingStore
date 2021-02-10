@@ -48,7 +48,7 @@ article {
 }
 
 .currencySpan {
-    margin-right: 10px;
+    margin-left: 10px;
 }
 
 #oldPriceP {
@@ -108,6 +108,10 @@ aside {
     font-size: 25px;
 }
 
+#buttonDiv {
+    display: inline;
+}
+
 #addBtn {
     font-size: 20px;
     width: 150px;
@@ -123,6 +127,7 @@ aside {
 #addBtn:disabled {
     background-color: var(--lightPinkColor);
     border: 1px solid var(--lightPurpleColor);
+    pointer-events: none;
 }
 
 #addBtn:hover {

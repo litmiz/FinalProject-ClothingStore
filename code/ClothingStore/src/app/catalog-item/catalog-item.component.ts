@@ -22,9 +22,9 @@ export class CatalogItemComponent implements OnInit {
     if(changes.itemCatalogData){
       this._id = `item-page-${this.itemCatalogData._id}`;
       this.img = `${environment.serverUrl}/${this.itemCatalogData.images[0]}`;
-      this.price = `${this.itemCatalogData.price}$`;
+      this.price = `$${this.itemCatalogData.price}`;
       if (this.itemCatalogData.sale) {
-        this.oldPrice = `${this.itemCatalogData.oldPrice}$`;
+        this.oldPrice = `$${this.itemCatalogData.oldPrice}`;
       } else {
         this.oldPrice = ``;
       }

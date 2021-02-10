@@ -11,6 +11,7 @@ import { ApiService } from '../api.service';
 export class CartComponent implements OnInit {
   shoppingBag = [];
   items = [];
+  checkout: boolean = false;
 
   constructor(private api: ApiService, private route: ActivatedRoute) { }
 
@@ -23,18 +24,20 @@ export class CartComponent implements OnInit {
       console.log(res);
       this.shoppingBag = res as [];
       this.items = [];
-      for (let i = 0; i < this.shoppingBag["items"].length; i++) {
-        this.items.push({
-          image: `${environment.serverUrl}/${this.shoppingBag["images"][i]}`,
-          price: this.shoppingBag["prices"][i],
-          size: Object.values(this.shoppingBag["items"][i])[0],
-          _id: Object.keys(this.shoppingBag["items"][i])[0],
-        });
+      if (this.shoppingBag["items"]) {
+        for (let i = 0; i < this.shoppingBag["items"].length; i++) {
+          this.items.push({
+            image: `${environment.serverUrl}/${this.shoppingBag["images"][i]}`,
+            price: this.shoppingBag["prices"][i],
+            size: Object.values(this.shoppingBag["items"][i])[0],
+            _id: Object.keys(this.shoppingBag["items"][i])[0],
+          });
+        }
       }
     });
   }
 
-  deleteItem(item){
+  deleteItem(item) {
     this.api.removeFromShoppingBag(item._id, item.size).subscribe(res => {
       this.getShoppingBag();
     });

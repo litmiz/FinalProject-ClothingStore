@@ -1,0 +1,77 @@
+:root {
+    --textFont: "Segoe UI", "Helvetica Neue";
+    --roundTextFont: 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    --darkPurpleColor: #8e435f;
+    --lightPurpleColor: #c36789;
+    --lightPinkColor: #f381ab;
+    --darkRedColor: #66263d;
+    --darkGreyBlueColor: #495057;
+    --darkGreyColor: rgb(116, 116, 116);
+    --lightGreyColor: rgb(241, 240, 240);
+    --blackColor: #000000;
+}
+
+section {
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+}
+
+h2 {
+    font-family: var(--roundTextFont);
+    color: var(--darkGreyBlueColor);
+    font-weight: bold;
+}
+
+hr {
+    margin: 0 auto;
+    margin-bottom: 15px;
+    width: 350px;
+    height: 4px;
+    border-radius: 8px;
+    background-color: var(--darkPurpleColor);
+}
+
+p {
+    font-size: 20px;
+}
+
+input {
+    width: 250px;
+    text-align: center;
+    border: none;
+    border-bottom: 3px solid var(--darkPurpleColor);
+}
+
+button {
+    width: 180px;
+    height: 50px;
+    color: white;
+    font-size: 20px;
+    background-color: var(--darkRedColor);
+    border: 3px solid var(--darkPurpleColor);
+    border-radius: 5px;
+}
+
+button:disabled {
+    background-color: var(--lightPinkColor);
+    border: 1px solid var(--lightPurpleColor);
+}
+
+button:hover {
+    background-color: var(--darkPurpleColor);
+    border: 3px solid var(--darkRedColor);
+}
+
+button:focus{
+    background-color: var(--darkRedColor)!important;
+    border: 3px solid var(--darkPurpleColor)!important;
+}
+
+#ordersAside {
+    margin-top: 20px;
+}
+
+.casualHr {
+    width: 150px;
+}
